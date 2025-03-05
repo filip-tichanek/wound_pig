@@ -1,0 +1,3673 @@
+---
+title: "Novel in vivo porcine models of chronic ischemic tissue"
+subtitle: "Statistical report"
+author: "Veronika Frelichova, Robert Bem, Jaroslav Chlupac, Michal Dubsky, Jitka Husakova, Andrea Nemcova, Ludek Voska, Zuzana Simunkova, Filip Tichanek, Jiri Fronek"
+format: 
+  html:  
+    embed-resources: true
+    keep-md: false
+    toc: true
+    toc-expand: 3
+    toc-depth: 4
+    toc-location: left
+    number-sections: true
+    number-depth: 4
+    code-fold: show
+    code-tools: true
+    code-summary: "Open code"
+    grid: 
+      body-width: 1000px
+      sidebar-width: 600px
+      margin-width: 100px
+editor: source
+project:
+  type: default
+  output-dir: output
+theme: darkly
+highlight-style: github-dark
+fontsize: 12 px
+code-block-bg: "#2D2D31"
+fontcolor: "#F5F5F5"
+monobackgroundcolor: "#3B3B3B"
+bibliography: references.bib
+---
+
+----------------------------------------------------------------------------------------------------
+
+```{r, collapse=TRUE, echo=FALSE, output=FALSE}
+getwd()
+```
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+```{css, echo=FALSE}
+code.sourceCode {
+  font-size: 0.85em;
+  border: 1px solid #ffffff; /* White border */
+  padding: 20px; /* Add padding for better visibility */
+}
+
+code{
+    color: #EEE8AA; /* Change the color value as needed */
+}
+
+.equation {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+body {
+  text-align: justify;
+}
+
+```
+
+----------------------------------------------------------------------------------------------------
+
+**Authors' affiliations**:
+
+[Veronika Frelichova^1,2^, Robert Bem^3^, Jaroslav Chlupac^1,5^, Michal Dubsky^3,4^, Jitka
+Husakova^3,4^, Andrea Nemcova^3^, Ludek Voska^5^, Zuzana Simunkova^6^, Filip
+Tichanek^7^, Jiri Fronek^1,4,8^]{style="font-size: larger;"}
+
+^1^Transplant Surgery Department, Institute for Clinical and Experimental Medicine, Prague, Czech
+Republic. ^2^Second Faculty of Medicine, Charles University, Prague, Czech Republic. ^3^Diabetic
+Center, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^4^First Faculty
+of Medicine, Charles University, Prague, Czech Republic. ^5^Clinical and Transplant Pathology
+Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^6^Experimental
+Medicine Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic.
+^7^Department of Data Science, Institute for Clinical and Experimental Medicine, IKEM, Prague, Czech
+Republic. ^8^Department of Anatomy, Second Faculty of Medicine, Charles University, Prague, Czech
+Republic.
+
+----------------------------------------------------------------------------------------------------
+
+**Person taking responsibility for the data analysis and code**:
+
+Filip Tichanek (f.tichanek@gmail.com)
+
+----------------------------------------------------------------------------------------------------
+
+This is statistical report of the study that has been *submitted* to the [Microvascular Research](https://www.sciencedirect.com/journal/microvascular-research)
+
+**Original publication**
+
+This is statistical report of for the \[TO BE ADDED\] published in the \[TO BE ADDED\]
+
+<br>
+
+[When using this code, cite original publication:]{style="font-size: larger;"}
+
+::: {style="background-color: #2D2D31; padding: 10px; margin: 10px 0; border-left: 3px solid #ccc;"}
+TO BE ADDED
+:::
+
+<br>
+
+Original GitHub repository: <https://github.com/filip-tichanek/wound_pig>
+
+<br>
+
+----------------------------------------------------------------------------------------------------
+
+```{css, echo=FALSE}
+code.sourceCode {
+  font-size: 0.85em;
+  border: 1px solid #ffffff; 
+  padding: 9px; 
+}
+
+code{
+    color: #EEE8AA; 
+    background: #96464D
+}
+
+.equation {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+body {
+  text-align: justify;
+}
+```
+
+# Introduction
+
+Diabetes mellitus (DM) is associated with serious complications, such as diabetic foot ulcers
+(DFUs), wounds characterized by impaired healing. Peripheral artery disease (PAD), a major
+complication of DM, exacerbates the risk and severity of DFUs due to impaired tissue perfusion and
+local hypoxia, often leading to amputation. To address the urgent need for new treatments, our study
+focused on developing an *in vivo* model of chronic ischemic tissue that closely mimics non-healing
+ulcers in diabetic patients.
+
+We introduced two models in diabetic and non-diabetic pigs, evaluating tissue oxygenation (`TcPO2`),
+wound healing rate (`wound area` change), and angiogenesis (`Vessel index`). We sought for model
+with characteristics indicating signs of chronicity, i.e. low and non-improving `TcPO2` levels,
+delayed or absent wound closure and persistently impaired vascularization of the wound.
+
+## Study design
+
+This study aimed to investigate the effects of ischemia on wound healing in both diabetic and
+non-diabetic pigs. Ischemic conditions were induced in limbs and through the creation of dorsal
+wounds, organizing the animals into four main groups based on their diabetic status and the
+localization of the wound:
+
+-   Limb wounds in non-diabetic pigs (`Non-DM, limbs`)
+-   Flap wounds in non-diabetic pigs (`Non-DM, flaps`)
+-   Limb wounds in diabetic pigs (`Diabetic, limbs`)
+-   Flap wounds in diabetic pigs (`Diabetic, flaps`)
+
+The experiment's core evaluations included measurement of tissue oxygen levels (`TcPO2`), analysis
+of wound healing reflected by changes in `wound area` (or `healing`), and histological examination
+for vascular changes through the `vessel index`. Except for the `vessel index`, these assessments
+were conducted at several time points post-intervention.
+
+`TcPO2` (mmHg) was measured longitudinally: on the day of wound formation (`D0`), a week
+post-formation (`D7`), two weeks post-formation (`D14`), and a month after wound formation (`D28`).
+
+`Wound area` (mm^2^) was measured longitudinally on `D0`, `D7`, and `D14`.
+
+`Vessel index` measurement requires a biopsy and was thus measured once per wound on `D7` or `D14`
+or `D28`.
+
+## Statistical methods
+
+Due to the small sample size in our study, classical parametric statistics in a frequentist
+framework, which rely on large-sample approximations, were unsuitable. Thus, we opted for a Bayesian
+framework, which provides clear interpretations regardless of sample size [@mcelreath2020].
+
+We utilized hierarchical Bayesian regression models with either a Student t-distribution ('robust'
+model) or Gamma likelihood (with a log-link) in R software [@Rcomp], version 4.3.1. These models
+were employed to analyze the impact of diabetes (absent \[`non-DM`\] or present \[`diabetic`\]),
+wound site (on \[`flaps`\] or \[`limbs`\]), and their interaction (all predictors fitted via a
+single summary variable `group`) on specified outcomes or their change over time. The models were
+fitted using the 'brms' package [@brms; @brmsadv], which employs 'Stan' software for probabilistic
+computing [@stan].
+
+There were three outcomes to be analyzed:
+
+-   \(i\) Local oxygen measured via transcutaneous oximetry (`TcPO2`, mmHg)
+
+-   \(ii\) `Wound area` (mm^2^)
+
+-   \(iii\) `Vessel index`, reflecting tissue vascularization
+
+To address data dependency, both the `TcPO2` and `wound area` models incorporated hierarchical
+random effects. The random-effect factor for the wound was nested within the subject's random
+effect. Given the low sample size, we primarily utilized a random intercept only. However, due to
+the presence of individual-specific trends in `wound area`, we also applied a more complex model
+with both random intercept and slope as secondary analysis.
+
+Since the `vessel index` was measured only once per wound, this particular model included a simple
+random intercept for the subject.
+
+The choice of likelihood distribution was guided by prior exploratory data analysis (EDA). Since
+`TcPO2` and `vessel index` exhibited a right-tailed distribution with larger errors for larger
+predictions, a Gamma distribution with a log-link was chosen. Conversely, `wound area` did not
+demonstrate such characteristics, prompting us to model it using robust regression (Student
+t-distribution). These models were subsequently checked using a *posterior predictive check* (PPC)
+[@mcelreath2020; @gelman2013].
+
+To ensure all models fit the data well and met distributional assumptions, we conducted the PPC for
+each model. Additionally, we examined Pareto k values to detect overly influential or outlying data
+points [@loo]. To compare the predictive accuracy of different models, we employed leave-one-out
+cross-validation (LOO-CV) [@vehtari2016].
+
+Conservative priors centered at zero effect were generally used for the `group` and `group:time`
+interaction effects. Priors were Gaussian, with $mu = 0$ and $sigma = 2$ (for robust model of
+`wound area`, $sigma = 2*SD$ where $SD$ being standard deviation of `wound area`) for the effect
+`group`. `Time` was scaled to the unit of weeks. For the `time:group` interaction, $sigma = 1$ was
+used (1 standard deviation of the `wound area` for robust model respectively).
+
+For the effect of time, we assumed that `TcPO2` should increase over time, reflecting healing.
+Similarly, according to Roy et al. [@roy2008], the wound area should decrease by at least 20% per 14
+days, i.e., approximately by 50 mm^2^ per week in the context of our data. This assumption was
+reflected in the prior distribution for the `time` effect, with:
+
+-   $normal (mu = 0.1, sigma = 2)$ for Gamma models
+
+-   $normal (mu = -50, sigma = 350)$ for the robust model (350 = 2 standard deviations of the
+    `wound area`)
+
+To report the uncertainty of the effect estimation, we show 95% credible intervals and the
+*probability of direction* (`PD`), which can be interpreted as an index (0.5 to 1) representing the
+certainty that the effect goes in a specific direction [@makowski2019].
+
+# Analysis
+
+## Data and packages
+
+### Packages
+
+```{r, collapse=TRUE}
+if (T) {rm(list = ls() )}
+getwd()
+if (T) { 
+  suppressWarnings(suppressMessages({
+    library(tidyverse)
+    library(stringr)
+    library(emmeans)
+    library(gtsummary)
+    library(car)
+    library(sjPlot)
+    library(flextable)
+    library(openxlsx)
+    library(mgcv)
+    library(pROC)
+    library(cowplot)
+    library(boot)
+    library(glmnet)
+    library(brms)
+    library(projpred)
+    library(janitor)
+    library(arm)
+    library(corrplot)
+    library(bayesplot)
+    library(ggbeeswarm)
+    library(kableExtra)
+    
+    # Functions clashes
+    select <- dplyr::select
+    rename <- dplyr::rename
+    mutate <- dplyr::mutate
+    recode <- dplyr::recode
+    summarize <- dplyr::summarize
+    count <- dplyr::count
+    
+    # Simple functions
+    logit <-function(x){log(x/(1-x))}
+    inv.logit <- function(x){exp(x)/(1+exp(x))}
+  }))
+  }
+```
+
+### Functions
+
+#### `run_model`
+
+The function to (i) load OR (ii) run & save (if has not been done previously) results of any
+computation or complex table production
+
+```{r}
+run_model <- function(expr, path, reuse = TRUE) {
+  # Initialize 'fit' to NULL to ensure it's always defined
+  fit <- NULL
+
+  # Construct the file path only if 'reuse' is TRUE
+  if (reuse) {
+    path <- paste0(path, ".Rds")
+    fit <- suppressWarnings(try(readRDS(path), silent = TRUE))
+
+    # Check if 'fit' is an error (file not found or couldn't be read)
+    if (inherits(fit, "try-error")) {
+      fit <- NULL
+    }
+  }
+
+  # If 'fit' is NULL (either because 'reuse' is FALSE, 
+  # or the file couldn't be read), evaluate 'expr'
+  if (is.null(fit)) {
+    fit <- eval(substitute(expr))
+
+    # Save 'fit' only if 'reuse' is TRUE and a valid 'path' is provided
+    if (reuse && !is.null(path) && nzchar(path)) {
+      saveRDS(fit, file = path)
+    }
+  }
+  return(fit)
+}
+```
+
+#### `p_dir`
+
+The function calculates proportion of posterior probability behind specified threshold or
+probability of direction (as defined in [Makowski et al.,
+2019](https://doi.org/10.3389/fpsyg.2019.02767) [@makowski2019]). `data`: data frame containing
+posterior draws in columns. `dir`: probability under/above threshold (`>` or `<`) or probability of
+direction (`max`). `threshold`: often null effect
+
+```{r, collapse=TRUE}
+
+    p_dir <- function(data, dir, tres){
+      if(dir == 'max'){
+      return(
+        max(length(data[data>tres]),length(data[data<tres]))/length(data)
+        )
+      } else if(dir == '<'){
+      return(
+        length(data[data<tres])/length(data)
+        )
+      } else if(dir == '>'){
+               return(
+                 length(data[data>tres])/length(data)
+                 )
+      } else {print('ERROR')}
+    }
+```
+
+#### `cur`
+
+The function creates polygon or curve given the data frame of posterior samples (`post`), specific
+column given (`var`), position on X axis (`con`), filling color (`cole`) and color of border of the
+polygon (`borde`). The last two arguments have defaults.
+
+```{r}
+    cur <- function(post, var, con, cole, borde){
+      de <- density(post[[var]])[c('x','y')] %>% data.frame()
+      if(missing(cole)) {cole = rgb(1, .5, .1, alpha=0.4)}
+      if(missing(borde))  {borde = cole}
+      polygon(x = de$x, y = de$y + con, col = cole, border = borde)
+      }
+```
+
+#### `ci`
+
+The function draws credible intervals (95% in wide line and 99% as slimmer line), given the data
+frame of posterior samples (`post`), specified column (`var`), position on X axis (`con`), and color
+`cole`. It also automatically generates white line on the same Y-axis as is the placement of the CI
+
+```{r}
+   ci <- function(post, var, con, cole, xsc){
+      if(missing(cole)) {cole = rgb(.9, .4, 0)}
+      qs = quantile(post[[var]], probs = c(0.005, 0.995, 0.025, 0.975, 0.5))
+      lines(c(min(xsc), max(xsc) ), c(con, con), col = 'white')
+      lines(c(qs[1], qs[2]), c(con, con),  col = cole, lwd=1.3, lend = 1)
+      lines(c(qs[3], qs[4]), c(con, con), col = cole, lwd=3.5, lend=1)
+      points(qs[5], con, pch='I', cex = 1)
+    }
+```
+
+Setting directories
+
+```{r, collapse=TRUE}
+## directories
+if (file.exists('data') == FALSE) {
+DATA_DIR <- "data"
+dir.create(DATA_DIR, showWarnings = FALSE, recursive = TRUE)
+}
+
+if (file.exists('output') == FALSE) {
+OUTPUT_DIR <- "gitignore/output"
+dir.create(OUTPUT_DIR, showWarnings = FALSE, recursive = TRUE)
+}
+
+if (file.exists('output/brm') == FALSE) {
+BRM_DIR <- "gitignore/output/brm"
+dir.create(BRM_DIR, showWarnings = FALSE, recursive = TRUE)
+}
+
+if (file.exists('data/db_history') == FALSE) {
+DB_HISTORY_DIR <- "data/db_history"
+dir.create(DB_HISTORY_DIR, showWarnings = FALSE, recursive = TRUE)
+}
+```
+
+### Import data
+
+```{r, collapse=TRUE}
+dat <- read.xlsx("data/data_frelichova_et_al.xlsx")
+dat$Subject <- as.factor(dat$Subject)
+dat$Site <- as.factor(dat$Site)
+dat$Type <- as.factor(dat$Type)
+dat$Site_nest <- interaction(dat$Subject, dat$Site)
+dat$DMcat <-  ifelse(dat$DM == 1, 'DM1', 'DM0')
+dat$group <- interaction(dat$DMcat, dat$Type)
+dat$group <- factor(dat$group, levels = c('DM0.flaps', 'DM0.limbs', 'DM1.flaps', 'DM1.limbs'))
+dat$group2 <- as.factor(ifelse(dat$Control == 1, 'in_Control', as.character(dat$group) ) )
+summary(dat)
+```
+
+### Wrangle data
+
+In the next step, we will modify data as needed for exploration and modelling. Note that we also
+create a variable `TcPO0_nz` where we replace zero values with 0.5. This is to address zeros that
+arise from detection limits, not actual absence, "true zero". This enables fitting Gamma models that
+do not allow occurrence of zeros.
+
+#### TcPO2
+
+```{r, collapse=TRUE}
+tcPO_long_all <- dat %>% pivot_longer(
+  cols = starts_with('Tc'),
+  names_to = 'time_days',
+  values_to = 'TcPO2'
+  ) %>% select(
+    Subject, Site, Site_nest, DM, Type, group, Control, time_days, TcPO2, group2
+  ) %>% filter(!is.na(TcPO2)) %>% mutate(
+    time_days = as.numeric(
+      gsub('TcPO2_', '', time_days)
+      ),
+    DM = if_else(DM == 0, -0.5, 0.5),
+    limbs = if_else(Type == 'limbs', 0.5, -0.5),
+    TcPO2_nz = if_else(TcPO2 == 0, 0.5, TcPO2),
+    time_cen = (time_days - 14) / 7
+    )
+
+tcPO_long <- tcPO_long_all %>% filter(Control == 0)
+summary(tcPO_long)
+```
+
+#### Wound area
+
+```{r, collapse=TRUE}
+healing_long_all <- dat %>% pivot_longer(
+  cols = starts_with('Heal'),
+  names_to = 'time_days',
+  values_to = 'healing'
+  ) %>% select(
+    Subject, Site, Site_nest, DM, Type, group, Control, time_days, healing, group2
+  ) %>% filter(!is.na(healing)) %>% mutate(
+    time_days = as.numeric(
+      gsub('Healing_', '', time_days)
+    ),  
+    DM = if_else(DM == 0, -0.5, 0.5),
+    limbs = if_else(Type == 'limbs', 0.5, -0.5),
+    time_cen = (time_days - 7)/7
+  )
+
+healing_long <- healing_long_all %>% filter(Control == 0)
+summary(healing_long)
+```
+
+#### Vessel index
+
+```{r, collapse=TRUE}
+vessel_long <- dat %>% pivot_longer(
+  cols = starts_with('Vess'),
+  names_to = 'time_days',
+  values_to = 'vessel_index'
+  ) %>% select(
+    Subject, Site, Site_nest, DM, Type, group, Control, time_days, vessel_index, group2
+  ) %>% filter(!is.na(vessel_index),
+               Control == 0) %>% mutate(
+    time_days = as.numeric(
+      gsub('Vessel_', '', time_days)
+    ),  
+    DM = if_else(DM == 0, -0.5, 0.5),
+    limbs = if_else(Type == 'limbs', 0.5, -0.5),
+    time_cen = (time_days - 17.5) / 7
+  )
+
+summary(vessel_long)
+```
+
+## Data exploration
+
+### Data distributions of outcomes, `SupFig1`
+
+```{r, collapse=TRUE, fig.height=4, fig.width= 8}
+#| fig.cap: "Data distribtuion of all the three outcomes"
+
+par(mfrow = c(1, 3))
+hist((tcPO_long$TcPO2), 14, main = 'TcPO2', xlab='')
+hist((healing_long$healing), 14, main = 'wound area', xlab='')
+hist((vessel_long$vessel_index), 14, main = 'vessel index', xlab='')
+```
+
+### TcPO2
+
+#### All subjects per plot
+
+Each plot include individuals from the same group (defined by presence of diabetes and location of
+wound)
+
+```{r, collapse=TRUE, fig.height=4, fig.width=7}
+#| fig.cap: "Figure: Change in local oxygen measured via transcutaneous oximetry (TcPO2) over time and across 4 groups. Each line shows time trajectory of individual wound, with color defining the same individual"
+
+cole <- c("#FF0000", "#80AF00", "#8000FF", 
+          "#FF8000", "#01AF40", "#0000FF", 
+          "#FF0080", "#90BF51", "#0001FF",
+          "#FF00FF", "#00CF00", "#0010FF")
+  
+fig_01a <- tcPO_long %>% 
+  ggplot(aes(x= time_days, y=TcPO2, by = Site_nest, col = Subject)) + 
+  geom_line(alpha = 0.8) +
+  facet_wrap(~group,  ncol=4, labeller = labeller(group = c("DM0.flaps" = "Non-DM, flaps",
+                                                            "DM0.limbs" = "Non-DM, limbs",
+                                                            "DM1.flaps" = "Diabetic, flaps",
+                                                            "DM1.limbs" = "Diabetic, limbs") ) ) +
+  scale_color_manual(values = cole) +
+  labs(x = "Days of experiment", y = 'TcPO2 (mmHg)') +
+  scale_x_continuous(breaks=c(0, 7, 14, 28))+
+  guides(color = guide_legend(override.aes = list(size = 3, linewidth=1.1), ncol=2))
+
+fig_01a
+```
+
+#### One subject per plot
+
+Each individual has a separate plots. Groups are distinguishable by color.
+
+```{r, collapse=TRUE, fig.height=7, fig.width=6}
+#| fig.cap: "Figure: Change in local oxygen measured via transcutaneous oximetry (TcPO2) over time. Each plot show specific subject with multiple curves representing different wounds. Color defines the group as defined above (group defined by the preence of diabetes and wound site). Grey curves show trajectories in control wound which have not been occluded"
+
+cole <- c("#01AF40", "#0000FF","#FF0000",
+          "#FF00FF", 'grey60')
+
+fig_01b <- tcPO_long_all %>% 
+  ggplot(aes(x = time_days, y = TcPO2, by = Site_nest, col = group2)) +
+  geom_line(alpha = 0.9) +
+  geom_point(alpha = 0.9) +
+  facet_wrap(~ Subject, ncol = 4, dir  = 'v',
+             labeller = labeller(Subject = function(x) paste0("Subject ", x))) +
+  scale_color_manual(values=cole, 
+                       name="Group",
+                       breaks=c("DM0.flaps", "DM0.limbs", "DM1.flaps",
+                                "DM1.limbs", "in_Control"),
+                       labels=c("Non-DM, flaps", "Non-DM, limbs", "Diabetic, flaps", "Diabetic, limbs", 
+                                "Control")) +
+  labs(x = "Days of experiment", y = 'TcPO2 (mmHg)') +
+  scale_x_continuous(breaks=c(0, 7, 14, 28))+
+  theme(legend.position="bottom",
+        legend.key.size = unit(0.4, 'cm'),
+        legend.title = element_text(size=11),
+        legend.text = element_text(size=10))+
+  guides(color = guide_legend(override.aes = list(size = 2, linewidth=1), ncol=4))
+
+fig_01b
+```
+
+### Wound area
+
+#### All subjects per plot
+
+Each plot include individuals from the same group (defined by presence of diabetes and location of
+wound)
+
+```{r, collapse=TRUE, fig.height=4, fig.width=7}
+#| fig.cap: "Figure: Change in wound area over time and across 4 groups: wounds on flaps of pigs without diabetes (Non-DM, flaps), wound on limbs of non-diabetic pigs (non-DM, limbs), wound on flaps of diabetic pigs (diabetic, flaps) and limb wound in diabetic pigs (diabetic, limbs). Each line shows time trajectory of individual wound, with color defining the same individual"
+
+cole <- c("#FF0000", "#80AF00", "#8000FF", 
+          "#FF8000", "#01AF40", "#0000FF", 
+          "#FF0080", "#90BF51", "#0001FF",
+          "#FF00FF", "#00CF00", "#0010FF")
+  
+fig_02a <- healing_long %>% 
+  ggplot(aes(x= time_days, y=healing, by = Site_nest, col = Subject)) + 
+  geom_line(alpha = 0.8) +
+  facet_wrap(~group,  ncol=4, labeller = labeller(group = c("DM0.flaps" = "Non-DM, flaps",
+                                                            "DM0.limbs" = "Non-DM, limbs",
+                                                            "DM1.flaps" = "Diabetic, flaps",
+                                                            "DM1.limbs" = "Diabetic, limbs") ) ) +
+  scale_color_manual(values = cole) +
+  labs(x = "Days of experiment", y = expression(Wound~area~(mm^2))) +
+  scale_x_continuous(breaks=c(0, 7, 14))+
+  guides(color = guide_legend(override.aes = list(size = 3, linewidth=1.1), ncol=2))
+
+fig_02a
+```
+
+#### One subject per plot
+
+Each individual has a separate plots. Groups are distinguishable by color.
+
+```{r, collapse=TRUE, fig.height=7, fig.width=6}
+#| fig.cap: "Figure: Change in wound area over time. Each plot show an individual subject with multiple curves representing different wounds. Color defines the group as defined above (group defined by the preence of diabetes and wound site). Grey curves (Controls) show trajectories in control (unoccluded) wounds)"
+
+cole <- c("#01AF40", "#0000FF","#FF0000",
+          "#FF00FF", 'grey60')
+
+fig_02b <- healing_long_all %>% 
+  ggplot(aes(x = time_days, y = healing, by = Site_nest, col = group2)) +
+  geom_line(alpha = 0.9) +
+  geom_point(alpha = 0.9) +
+  facet_wrap(~ Subject, ncol = 4, dir = 'v', 
+             labeller = labeller(Subject = function(x) paste0("Subject ", x))) +
+  scale_color_manual(values=cole, 
+                       name="Group",
+                       breaks=c("DM0.flaps", "DM0.limbs", "DM1.flaps",
+                                "DM1.limbs", "in_Control"),
+                       labels=c("Non-DM, flaps", "Non-DM, limbs", "Diabetic, flaps", "Diabetic, limbs", 
+                                "Control")) +
+  labs(x = "Days of experiment", y = expression(Wound~area~(mm^2))) +
+  scale_x_continuous(breaks=c(0, 7, 14))+
+  theme(legend.position="bottom",
+        legend.key.size = unit(0.4, 'cm'),
+        legend.title = element_text(size=11),
+        legend.text = element_text(size=10))+
+  guides(color = guide_legend(override.aes = list(size = 2, linewidth=1), ncol=4))
+
+fig_02b
+```
+
+### Vessel index
+
+Note that there is only a single measurement per wound for the vessel index
+
+Each plot include individuals from the same group (defined by presence of diabetes and location of
+wound). Individuals are distinguishable by color.
+
+```{r, fig.height=4, fig.width=7}
+#| fig.cap: "Relationship between vessel index and time of measurement from the wound formation, showed separately for each group. Each point shows observation of individual wound, with color defining the same individual"
+
+
+cole <- c("#FF0000", "#80AF00", "#8000FF", 
+          "#FF8000", "#01AF40", "#0000FF", 
+          "#FF0080", "#90BF51", "#0001FF",
+          "#FF00FF", "#00CF00", "#0010FF")
+
+fig_03a <- vessel_long %>% 
+ggplot(aes(x= time_days, y=vessel_index, col = Subject)) + 
+  geom_beeswarm(alpha = 0.8, size = 3) +
+  scale_color_manual(values = cole) + 
+  
+  stat_smooth(data=subset(vessel_long, group=="DM0.flaps"), 
+              aes(x=time_days, y=vessel_index), 
+              method = 'lm', se = F, color='black', size = 0.8) +
+  
+  stat_smooth(data=subset(vessel_long, group=="DM0.limbs"), 
+              aes(x=time_days, y=vessel_index), 
+              method = 'lm', se = F, color='black', size = 0.8) +
+  
+  stat_smooth(data=subset(vessel_long, group=="DM1.flaps"), 
+              aes(x=time_days, y=vessel_index), 
+              method = 'lm', se = F, color='black', size = 0.8) +
+  
+  stat_smooth(data=subset(vessel_long, group=="DM1.limbs"), 
+              aes(x=time_days, y=vessel_index), 
+              method = 'lm', se = F, color='black', size = 0.8) +
+  
+  facet_grid(~group, labeller = labeller(group = c(
+    "DM0.flaps" = "Non-DM, flaps",
+    "DM0.limbs" = "Non-DM, limbs",
+    "DM1.flaps" = "Diabetic, flaps",
+    "DM1.limbs" = "Diabetic, limbs") ) ) +
+  
+  labs(x = "Days of experiment", y = 'Vessel index') +
+  
+  theme(legend.position="bottom",
+        legend.key.size = unit(0.4, 'cm'),
+        legend.title = element_text(size=14),
+        legend.text = element_text(size=12)) +
+  
+  guides(color = guide_legend(override.aes = list(size = 4.6, linewidth=1), nrow=2))+
+  scale_x_continuous(breaks=c(7, 14, 28))
+
+fig_03a
+```
+
+## Models
+
+### TcPO2 model
+
+Because TcPO2 is only-positive variable with heavy right tail (Supplementary Figure 1), we will
+primarily model it via hierarchical generalized linear model with Gamma distribution and log-link.
+
+#### Priors
+
+We did not find any data about development of TcPO2 over time in similar pig model. However, we
+still expect the TcPO2 will be at least slightly improving over time. Thus, the prior will reflect
+the expectation of increasing the TcPO2 1.1 times per a week, thereby setting the center of prior
+for the time effect slightly
+
+```{r, collapse=TRUE}
+log(1.1)
+```
+
+Setting the prior distribution
+
+```{r, collapse=TRUE}
+prior1 <- prior(normal(0, 2), class= b, coef = 'groupDM0.limbs') +
+  prior(normal(0, 2), class= b, coef = 'groupDM1.flaps')+
+  prior(normal(0, 2), class= b, coef = 'groupDM1.limbs')+
+  prior(normal(0.1, 2), class= b, coef = 'time_cen')+
+  prior(normal(0, 1), class= b, coef = 'time_cen:groupDM0.limbs')+
+  prior(normal(0, 1), class= b, coef = 'time_cen:groupDM1.flaps')+
+  prior(normal(0, 1), class= b, coef = 'time_cen:groupDM1.limbs')
+
+```
+
+#### Model fit
+
+Next, we will fit the model and also evaluate model convergence and effective size of posterior
+samples (*ESS*). We will use following parameters:
+
+(i) `Rhat` from model summary: 1 indicates convergence
+
+(ii) `Bulk_ESS` and `Tail_ESS` from summary output: should be \> 1000-2000, ideally more for effects
+     of interest
+
+```{r, collapse=TRUE}
+tcpo_model_int <- run_model(
+  brm(TcPO2_nz ~ time_cen + group + time_cen:group + (1|Subject/Site_nest),
+      data = tcPO_long,
+      prior = prior1,
+      chains = 2, iter = 8000, warmup = 2000, seed = 17,
+      control = list(adapt_delta = 0.99),
+      cores = 2,
+      family = Gamma(link='log')),
+  'gitignore/output/brm/tcpo_model_int', reuse = TRUE)
+
+
+summary(tcpo_model_int)
+```
+
+Convergence of model is fine, ESSs are sufficient.
+
+Lets look at estimated trend in TcPO2 over time and across groups
+
+```{r, collapse=TRUE}
+conditional_effects(tcpo_model_int, effects='time_cen:group')
+```
+
+Now look below to predicted TcPO2 in the middle day, separately for each group
+
+```{r, collapse=TRUE}
+conditional_effects(tcpo_model_int, effects='group')
+```
+
+Based on both plots, it seems that wounds on flaps may restore TcPO2 more slowly compared to limbs
+
+#### Model diagnostics
+
+These plots show how well model reproduce (predict, or *retrodict*) data
+
+We will show following plot:
+
+(i) *data density* plot: the figure shows density of the outcome variable (thick line) and densities
+    of artificial data from simulations based on Bayesian model estimates (slimmer lines). The thick
+    line should not deviate much from the slimmer lines (in that case, model does not recapitulate
+    data well). We will show specifically grouped data density which is the same but for specific
+    group. This is also useful for evaluation potential group-specific shapes of data distribution
+    (e.g. different spread of outcome)
+
+```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE}
+pp_check(tcpo_model_int, type='dens_overlay_grouped',ndraws = 50,group='group') + xlim(0, 100)
+```
+
+It looks very fine here as thick line closely follows the slim lines.
+
+(ii) *scatter plot* shows average predictions (x-axis) vs. data. For Gaussian and robust
+     (t-distribution) models, increasing X-axis should not noticeably change the spread of data
+     points
+
+```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE, message=FALSE}
+pp_check(tcpo_model_int, type='scatter_avg')
+```
+
+As expected, spread increases with X axis. This would be problem if we had Gaussian model. As we
+have Gamma model, this behavior is expected,
+
+(iii) *max - min* plot shows predicted vs. actual minimal and maximal value of outcome. Dark blue
+      point should be among the light-blue points
+
+```{r, collapse=TRUE, fig.height=6, fig.width=6}
+set.seed(16)
+pp_check(tcpo_model_int,type="stat_2d", stat = c("max", "min"),ndraws=200)
+```
+
+This is not good here. Our minimal value is relatively large (this is likely product of our addition
+of to zero) and our maximal value is surprisingly small. TcPO2 thus seems to have upper bound,
+limiting its further increase.
+
+(iv) *mean - standard deviation* plot shows predicted vs. actual mean and SD of the outcome
+
+```{r, collapse=TRUE, fig.height=6, fig.width=6}
+set.seed(16)
+pp_check(tcpo_model_int,type="stat_2d", stat = c("mean", "sd"),ndraws=200)
+```
+
+This seems relatively fine: the model expects the *mean* and *standard deviation* of the TcPO2 not
+far away from the factual values.
+
+(v) *LOO plots* answers the question 'are there too influential observations?' and show calibration
+    plot respectively. All *pareto* estimates should have k \< 0.7 (indicating no overly influential
+    observation) and points in the second plot should be close the line, indicating a good
+    calibration.
+
+```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE, message=FALSE}
+plot(loo(tcpo_model_int))
+pp_check(tcpo_model_int, type = "loo_pit")
+loo(tcpo_model_int)
+```
+
+There are few influential observations as would be expected given small sample size. We have to keep
+in mind that model may be overconfident and the estimated uncertainty underestimated.
+
+### Wound area models
+
+The wound area, unlike the other two outcomes, displays a symmetrical distribution, suggesting its
+suitability for Gaussian approximation. However, due to the small sample size, a robust regression
+with a Student's t-distribution is recommended to mitigate the impact of outliers.
+
+Figure of changes in wound area over time (the section 2.2.3. above) shows considerable individual
+variation even within a single group, indicating the need for a more sophisticated model. For our
+secondary analysis, we will use a model with random both intercepts and slopes to accurately account
+for individual and temporal variations.
+
+#### Prior specification
+
+According to [Roy et
+al.](https://journals.physiology.org/doi/full/10.1152/physiolgenomics.90362.2008), the wound area
+should decrease by at least 20% per 14 days, i.e. approximately by 50 units per week in the context
+of our data. This will be addressed during the prior setting.
+
+Data summary for prior specification
+
+```{r, collapse=TRUE}
+sd(healing_long$healing) * c(2, 1)
+```
+
+Prior specification
+
+```{r, collapse=TRUE}
+
+prior2 <- prior(normal(0, 350), class= b, coef = 'groupDM0.limbs') +
+  prior(normal(0, 350), class= b, coef = 'groupDM1.flaps')+
+  prior(normal(0, 350), class= b, coef = 'groupDM1.limbs')+
+  prior(normal(-50, 350), class= b, coef = 'time_cen')+
+  prior(normal(0, 175), class= b, coef = 'time_cen:groupDM0.limbs')+
+  prior(normal(0, 175), class= b, coef = 'time_cen:groupDM1.flaps')+
+  prior(normal(0, 175), class= b, coef = 'time_cen:groupDM1.limbs')
+```
+
+#### Random intercept model - Gaussian
+
+```{r}
+
+healing_model_int <- run_model(
+  brm(healing ~ time_cen + group + time_cen:group + (1|Subject/Site_nest),
+      data = healing_long,
+      prior = prior2,
+      chains = 2, iter = 8000, warmup = 2000, seed = 17,
+      control = list(adapt_delta = 0.99),
+      cores = 2,
+      family = gaussian() ,
+      save_pars = save_pars(all = TRUE)),
+  'gitignore/output/brm/healing_model_int', reuse = TRUE)
+
+
+summary(healing_model_int)
+conditional_effects(healing_model_int, effects='time_cen:group')
+conditional_effects(healing_model_int, effects='group')
+```
+
+Model converged well and shows sufficient ESS. The model suggests that wounds of diabetic pigs may
+have, surprisingly, faster wound closure. Very similar result are expected also from robust model
+
+#### Random intercept model - robust
+
+```{r, collapse=TRUE}
+
+healing_model_int_robust <- run_model(
+  brm(healing ~ time_cen + group + time_cen:group + (1|Subject/Site_nest),
+      data = healing_long,
+      prior = prior2,
+      chains = 2, iter = 8000, warmup = 2000, seed = 17,
+      control = list(adapt_delta = 0.99),
+      cores = 2,
+      family = student() ,
+      save_pars = save_pars(all = TRUE)),
+  'gitignore/output/brm/healing_model_int_robust', reuse = TRUE)
+
+
+summary(healing_model_int_robust)
+conditional_effects(healing_model_int_robust, effects='time_cen:group')
+conditional_effects(healing_model_int_robust, effects='group')
+```
+
+Again, model converged well and shows sufficient ESS. Results are very similar to Gaussian model as
+expected. Will more complex and presumably more conservative random-slope model replicate these
+findings?
+
+#### Random slope model
+
+```{r, collapse=TRUE}
+
+healing_model_int_rslope <- run_model(
+  brm(healing ~ time_cen + group + time_cen:group + (time_cen|Subject/Site_nest),
+      data = healing_long,
+      prior = prior2,
+      chains = 2, iter = 8000, warmup = 2000, seed = 17,
+      control = list(adapt_delta = 0.99),
+      cores = 2,
+      family = student() ,
+      save_pars = save_pars(all = TRUE)),
+  'gitignore/output/brm/healing_model_int_rslope', reuse = TRUE)
+
+
+summary(healing_model_int)
+conditional_effects(healing_model_int_rslope, effects='time_cen:group')
+conditional_effects(healing_model_int_rslope, effects='group')
+```
+
+Again, the model converged well and shows sufficient ESS. Findings are the same but estimated
+uncertainty is larger, as expected.
+
+#### Models diagnostic
+
+*Data density* plot: Simulate data from models and compare it with actual data distributions
+
+```{r, collapse=TRUE, fig.height=12, fig.width=8}
+pla<-pp_check(healing_model_int, type='dens_overlay_grouped', ndraws = 50, group='group') 
+plb<-pp_check(healing_model_int_robust, type='dens_overlay_grouped', ndraws = 50, group='group') 
+plc<-pp_check(healing_model_int_rslope, type='dens_overlay_grouped', ndraws = 50, group='group') 
+plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
+```
+
+The posterior predictive checks indicate good models' fits, as the simulated data from the models
+closely resemble the observed data.
+
+*Scatter plot*: are errors of the models larger for higher prediction?
+
+```{r, collapse=TRUE, fig.height=10, fig.width=4, warning=FALSE, message=FALSE}
+pla<-pp_check(healing_model_int, type='scatter_avg') 
+plb<-pp_check(healing_model_int_robust, type='scatter_avg') 
+plc<-pp_check(healing_model_int_rslope, type='scatter_avg') 
+plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
+```
+
+No sign of larger error for higher predictions
+
+*Min-max* plot
+
+```{r, collapse=TRUE, fig.height=12, fig.width=8}
+pla<-pp_check(healing_model_int, type="stat_2d", stat = c("max", "min"), ndraws=200) 
+plb<-pp_check(healing_model_int_robust, type="stat_2d", stat = c("max", "min"), ndraws=200) 
+plc<-pp_check(healing_model_int_rslope, type="stat_2d", stat = c("max", "min"), ndraws=200) 
+plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
+```
+
+While the models generally replicate the data well, a notable discrepancy arises with the prediction
+of lower minimum values compared to the actual dataset. Given that wound size is inherently
+non-negative, both Gaussian and robust regression models implicitly assume the possibility of
+negative outcomes, which does not align with our data characteristics. Despite this, the observed
+minimum values are not significantly higher than those predicted by the models, suggesting that the
+approximation remains reasonably accurate.
+
+*SD - mean* plot
+
+```{r, collapse=TRUE, fig.height=12, fig.width=8}
+pla<-pp_check(healing_model_int, type="stat_2d", stat = c("mean", "sd"), ndraws=200) 
+plb<-pp_check(healing_model_int_robust, type="stat_2d", stat = c("mean", "sd"), ndraws=200) 
+plc<-pp_check(healing_model_int_rslope, type="stat_2d", stat = c("mean", "sd"), ndraws=200) 
+plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
+```
+
+Look very well for all the models.
+
+*loo* plot - calibartion
+
+```{r, collapse=TRUE, fig.height=12, fig.width=8}
+pla<-pp_check(healing_model_int, type = "loo_pit") 
+plb<-pp_check(healing_model_int_robust, type = "loo_pit") 
+plc<-pp_check(healing_model_int_rslope, type = "loo_pit") 
+plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
+```
+
+Calibrations look well for all models.
+
+*loo* plot - pareto values
+
+```{r, collapse=TRUE, fig.height=10, fig.width=5, warning=FALSE, message=FALSE}
+par(mfrow=c(3,1))
+plot(loo(healing_model_int))
+plot(loo(healing_model_int_robust))
+plot(loo(healing_model_int_rslope))
+```
+
+Robust model shows the best properties in terms of overly influential values.
+
+#### Models comparison
+
+There are some data points with Pareto \>0.7, except for robust model. Let to provide moment_match
+and compare the models
+
+```{r, warning=FALSE, message=FALSE}
+healing_model_int <- add_criterion(healing_model_int, 
+                                   criterion = "loo", 
+                                   moment_match = TRUE)
+
+healing_model_int_robust <- add_criterion(healing_model_int_robust, 
+                                          criterion = "loo", 
+                                          moment_match = TRUE)
+
+healing_model_int_rslope <- add_criterion(healing_model_int_rslope, 
+                                          criterion = "loo", 
+                                          moment_match = TRUE)
+
+loo_compare(healing_model_int, healing_model_int_robust, healing_model_int_rslope)
+```
+
+Although a random slope model offers some improvement in prediction accuracy, the enhancement is
+modest. Given the complexity of the random slope model and our dataset's limited size (three
+observations per group), a simpler robust regression with a random intercept approach is preferred.
+This strategy acknowledges the potential underestimation of uncertainty, especially in
+group-specific slopes, but balances model complexity against our dataset's constraints.
+
+### Vessel index model
+
+As the vessel index also shows right-tailed distribution, generalized linear model with gamma
+distribution and log-link will be primarily used.
+
+#### Model fit
+
+```{r, collapse=TRUE}
+vessel_model_int_gamma <- run_model(
+  brm(vessel_index ~ time_cen + group + time_cen:group + (1|Subject),
+      data = vessel_long,
+      prior = prior1,
+      chains = 2, iter = 8000, warmup = 2000, seed = 17,
+      control = list(adapt_delta = 0.99),
+      cores = 2,
+      family = Gamma(link = 'log') ),
+  'gitignore/output/brm/vessel_model_int_gamma', reuse = TRUE)
+
+summary(vessel_model_int_gamma)
+conditional_effects(vessel_model_int_gamma, effects='time_cen:group')
+conditional_effects(vessel_model_int_gamma, effects='group')
+```
+
+The model demonstrated good convergence and sufficient effective sample sizes (ESS), indicating
+reliable estimates. However, the vessel index variable presents challenges, primarily due to the
+lack of longitudinal data for most animals, resulting in significantly increased uncertainty in the
+estimates. Notably, the largest discrepancies are observed in the initial measurement. This
+considerable uncertainty makes it impossible to draw any conclusion from these results.
+
+#### Posterior predictive check
+
+```{r, fig.height=6, fig.width=6, warning=FALSE, message=FALSE}
+pp_check(vessel_model_int_gamma, type='dens_overlay_grouped', ndraws = 50,group='group')
+pp_check(vessel_model_int_gamma, type='scatter_avg')
+pp_check(vessel_model_int_gamma, type="stat_2d", stat = c("max", "min"), ndraws=200)
+pp_check(vessel_model_int_gamma, type="stat_2d", stat = c("mean", "sd"), ndraws=200)
+pp_check(vessel_model_int_gamma, type = "loo_pit")
+plot(loo(vessel_model_int_gamma))
+loo(vessel_model_int_gamma)
+```
+
+As above, PPC seems fine but with some overly influential values.
+
+## Results presentation
+
+Model-based estimates and their uncertainty will be presented in the form of **two figures** and
+**two tables** per each of selected models (4 models are presented in total - one per outcome and
+additional random slope model for the `wound area`).
+
+<br>
+
+**Figures**
+
+***A***) Visualizes the posterior distributions for differences between groups across three distinct
+measures:
+
+-   At the first measurement
+-   At the final measurement
+-   Based on the rate of change, highlighting how rapidly outcomes change in one group relative to
+    another.
+
+The posterior distributions will be presented to compare the following groups, arranged in the
+specified sequence (from top to bottom):
+
+-   Diabetes vs. non-DM in limbs
+-   Diabetes vs. non-DM in flaps
+-   Diabetes vs. non-DM, averaged over both limbs and flaps
+-   Limbs vs. flaps in non-diabetic subgroup
+-   Limbs vs. flaps in diabetic subgroup
+-   Limbs vs. flaps, averaged over both non-diabetic and diabetic
+
+***B***) Visualizes the model-estimated change of the outcome, separately for each of 4 groups:
+
+-   Limb wounds in non-diabetic pigs (`Non-DM, limbs`)
+-   Flap wounds in non-diabetic pigs (`Non-DM, flaps`)
+-   Limb wounds in diabetic pigs (`Diabetic, limbs`)
+-   Flap wounds in diabetic pigs (`Diabetic, flaps`)
+
+**Tables**
+
+Tables show estimates, 95% credible intervals (*95% CI*) and the probability of direction (*PD*)
+which is an index (0.5 to 1) representing the certainty that the effect goes in a particular
+direction, as described in [Makowski et al., 2019](https://doi.org/10.3389/fpsyg.2019.02767)
+
+***A***) shows prediction of outcome separately for each of the 4 groups (see above) in terms of the
+following estimates:
+
+-   at the 1st measurement
+-   at the final measurement
+-   rate of change in in the outcome per a week
+
+***B***) shows the estimated between-groups differences, for the same estimands as above
+
+### TcPO2
+
+Posterior samples extraction
+
+```{r, collapse=TRUE}
+## original parameters (groups in middle time)
+post_fix_tcpo <- as.data.frame(tcpo_model_int, 
+                          variable = c("b_Intercept","b_time_cen",
+                                       "b_groupDM0.limbs", 
+                                       "b_groupDM1.flaps", 
+                                       "b_groupDM1.limbs",
+                                       "b_time_cen:groupDM0.limbs", 
+                                       "b_time_cen:groupDM1.flaps", 
+                                       "b_time_cen:groupDM1.limbs"))
+
+post_fix_tcpo <- post_fix_tcpo %>% mutate(
+  ### posterior distributions of outcome across groups at middle time
+  DM0.flaps = b_Intercept,
+  DM0.limbs = b_Intercept + b_groupDM0.limbs,
+  DM1.flaps = b_Intercept + b_groupDM1.flaps,
+  DM1.limbs = b_Intercept + b_groupDM1.limbs,
+  
+  ### posterior distributions of slopes across groups
+  DM0.flaps_slope = b_time_cen,
+  DM0.limbs_slope = b_time_cen + post_fix_tcpo$'b_time_cen:groupDM0.limbs',
+  DM1.flaps_slope = b_time_cen + post_fix_tcpo$'b_time_cen:groupDM1.flaps',
+  DM1.limbs_slope = b_time_cen + post_fix_tcpo$'b_time_cen:groupDM1.limbs'
+  ) %>% mutate(
+    
+    ### posterior distributions of outcome across group at the starting time
+    DM0.flaps_T0 = DM0.flaps - 2*DM0.flaps_slope,
+    DM0.limbs_T0 = DM0.limbs - 2*DM0.limbs_slope,
+    DM1.flaps_T0 = DM1.flaps - 2*DM1.flaps_slope,
+    DM1.limbs_T0 = DM1.limbs - 2*DM1.limbs_slope,
+    DM0.flaps_TF = DM0.flaps + 2*DM0.flaps_slope,
+    DM0.limbs_TF = DM0.limbs + 2*DM0.limbs_slope,
+    DM1.flaps_TF = DM1.flaps + 2*DM1.flaps_slope,
+    DM1.limbs_TF = DM1.limbs + 2*DM1.limbs_slope
+  ) %>%  mutate(
+    ### difference: diabetes 0 vs. 1 in flaps
+    flaps.DMdif_TM = -DM0.flaps + DM1.flaps,
+    flaps.DMdif_T0 = -DM0.flaps_T0 + DM1.flaps_T0,
+    flaps.DMdif_TF = -DM0.flaps_TF + DM1.flaps_TF,
+    flaps.DMdif_slope = -DM0.flaps_slope + DM1.flaps_slope,
+    
+    ### difference: diabetes 0 vs. 1 in limbs
+    limbs.DMdif_TM = -DM0.limbs +DM1.limbs,
+    limbs.DMdif_T0 = -DM0.limbs_T0  +DM1.limbs_T0,
+    limbs.DMdif_TF = -DM0.limbs_TF  +DM1.limbs_TF,
+    limbs.DMdif_slope = -DM0.limbs_slope +DM1.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 0
+    DM0.sitedif_TM = -DM0.flaps + DM0.limbs, 
+    DM0.sitedif_T0 = -DM0.flaps_T0 + DM0.limbs_T0,
+    DM0.sitedif_TF = -DM0.flaps_TF + DM0.limbs_TF,
+    DM0.sitedif_slope = -DM0.flaps_slope + DM0.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 1
+    DM1.sitedif_TM = -DM1.flaps + DM1.limbs, 
+    DM1.sitedif_T0 = -DM1.flaps_T0 + DM1.limbs_T0,
+    DM1.sitedif_TF = -DM1.flaps_TF + DM1.limbs_TF,
+    DM1.sitedif_slope = -DM1.flaps_slope + DM1.limbs_slope) 
+
+## difference: diabetes 0 vs. 1 averaged over both limbs and flaps
+post_fix_tcpo$DMdif_TM <-  rowMeans(
+  post_fix_tcpo[,c('flaps.DMdif_TM', 'limbs.DMdif_TM')]
+  )
+
+post_fix_tcpo$DMdif_T0 <-  rowMeans(
+  post_fix_tcpo[,c('flaps.DMdif_T0', 'limbs.DMdif_T0')]
+  )
+
+post_fix_tcpo$DMdif_TF <-  rowMeans(
+  post_fix_tcpo[,c('flaps.DMdif_TF', 'limbs.DMdif_TF')]
+  )
+
+post_fix_tcpo$DMdif_slope <-  rowMeans(
+  post_fix_tcpo[,c('flaps.DMdif_slope', 'limbs.DMdif_slope')]
+  )
+
+## difference: flaps vs. limbs, averaged over both DM statuses
+post_fix_tcpo$sitedif_TM <-  rowMeans(
+  post_fix_tcpo[,c('DM0.sitedif_TM', 'DM1.sitedif_TM')]
+  )
+
+post_fix_tcpo$sitedif_T0 <-  rowMeans(
+  post_fix_tcpo[,c('DM0.sitedif_T0', 'DM1.sitedif_T0')]
+  )
+
+post_fix_tcpo$sitedif_TF <-  rowMeans(
+  post_fix_tcpo[,c('DM0.sitedif_TF', 'DM1.sitedif_TF')]
+  )
+
+post_fix_tcpo$sitedif_slope <-  rowMeans(
+  post_fix_tcpo[,c('DM0.sitedif_slope', 'DM1.sitedif_slope')]
+  )
+```
+
+#### Posterior distributions of between-groups difference, `SupplFig2`
+
+Following plot show posterior distribution for **difference between the groups** in terms of
+starting value, value at the end of the experiment and difference between predicted 1-week changes
+of the value. As the estimation was done with Gamma model with log link, the effects are shown in
+log-ratios, i.e. zero indicates null effect.
+
+```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
+#| fig.cap: "Figure: Effects of wound site and diabetes on TcPO2 value with 95 (thick line) and 99% (slim line) credible intervals, separately for the starting (left), and final (middle) days of the experiment, and for 1-week change (right).  Upper part (blue) shows effect of limb site either in non-diabetic (non-DM) or diabetic subgroups and averaged effect (whole posterior distribution). Bottom part (red) shows the effect of diabetes either in flap wound site or limb wound sites, and averaged (whole posterior distribution). PD indicates probability of direction as defined in method, with higher value indicating higher evidence for the statistical clarity of the effect"
+
+## general setting
+suppl_fig_01 <- function(){
+  
+m <- matrix(c(1, 3, 4, 5,
+              2, 3, 4, 5), nrow = 2, ncol = 4, byrow = TRUE)
+
+layout(mat = m, 
+       heights = c(0.5, 0.5),
+       widths = c(0.04,rep(0.96/3,3)))
+
+
+par(mgp=c(1.6,0.62,0))
+par(mar=c(0,0,0,0))
+
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Limbs vs flaps", 
+     cex=1.3, font=3, col='blue', 
+     xpd=TRUE, srt=90 )
+
+lines(
+  c( .9 , .9),
+  c( -.7, .7),
+  lty = 2, col='blue' )
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Diabetic vs non-diabetic", col='red3',
+     cex=1.3, font=3, 
+     xpd=TRUE, srt=90)
+
+lines(
+  c( .9 , .9),
+  c( -.55, .85),
+  lty = 2, col='red3' )
+
+
+par(mar=c(2, 0, 1, 0))
+par(mgp = c(0.7, 0.5, 0))
+
+## T0 -------------------------------------------------------------------------------
+xsc <-  seq(-2, 3, 1)
+ysc <-  c(0, 6)
+
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio at start", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+  )
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+
+ci(post_fix_tcpo, 'DMdif_T0', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'DMdif_T0', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'flaps.DMdif_T0', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'limbs.DMdif_T0', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_tcpo, 'sitedif_T0', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'sitedif_T0', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'DM1.sitedif_T0', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'DM0.sitedif_T0', y, 'blue', xsc)
+
+text(min(xsc) + 0.2*xscal,
+     max(ysc)*0.975,
+     "non-DM subgroup", cex = 1.1)
+
+text(min(xsc) + 0.2*xscal,
+     max(ysc)*0.915,
+     "diabetic subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.66,
+     "average effect", cex = 1.1)
+
+
+text(min(xsc) + 0.18*xscal,
+     max(ysc)*0.45,
+     "limbs subgroup", cex = 1.1)
+
+text(min(xsc) + 0.18*xscal,
+     max(ysc)*0.38,
+     "flaps subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.13,
+     "average effect", cex = 1.1)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$sitedif_T0, 'max', 0) , 2 
+         )
+       )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$DMdif_T0, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+## TF --------------------------------------------------------------------------------
+xsc = seq(-2, 3, 1)
+ysc = c(0, 6)
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio at the end", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc), max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix_tcpo, 'DMdif_TF', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'DMdif_TF', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'flaps.DMdif_TF', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'limbs.DMdif_TF', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_tcpo, 'sitedif_TF', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'sitedif_TF', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'DM1.sitedif_TF', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'DM0.sitedif_TF', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$sitedif_TF, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$DMdif_TF, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+## slope ----------------------------------------------------------------------------
+xsc = round(seq(-0.8, 1, by = 0.4), 5)
+ysc = c(0, 20)
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio in magnitudes of change over a week", 
+  ylab="", 
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix_tcpo, 'DMdif_slope', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'DMdif_slope', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'flaps.DMdif_slope', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'limbs.DMdif_slope', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_tcpo, 'sitedif_slope', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_tcpo, 'sitedif_slope', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_tcpo, 'DM1.sitedif_slope', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_tcpo, 'DM0.sitedif_slope', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$sitedif_slope, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_tcpo$DMdif_slope, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+}
+suppl_fig_01()
+```
+
+The figure suggest that TcPO4 may restore faster in limbs, compared to flaps.
+
+#### Model-estimated TcPO2 over time, `Figure 1`
+
+```{r, fig.height=4, fig.width=6, warning=FALSE}
+time <- seq(0, 28, length=100)
+time_z <- seq(-2, 2, length=100)
+
+
+cip_flaps_DM0 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_flaps_DM0[1:12000,i] <-  post_fix_tcpo$DM0.flaps + post_fix_tcpo$DM0.flaps_slope*time_z[i]}
+cip_flaps_DM0  <- sapply(cip_flaps_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_flaps_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_flaps_DM1[1:12000,i] <-  post_fix_tcpo$DM1.flaps + post_fix_tcpo$DM1.flaps_slope*time_z[i]}
+cip_flaps_DM1  <- sapply(cip_flaps_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM0 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM0[1:12000,i] <-  post_fix_tcpo$DM0.limbs + post_fix_tcpo$DM0.limbs_slope*time_z[i]}
+cip_limbs_DM0  <- sapply(cip_limbs_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM1[1:12000,i] <-  post_fix_tcpo$DM1.limbs + post_fix_tcpo$DM1.limbs_slope*time_z[i]}
+cip_limbs_DM1  <- sapply(cip_limbs_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+predict <- data.frame(
+  prediction = 
+    unlist(c(
+      exp(cip_flaps_DM0[3,]),  exp(cip_limbs_DM0[3,]), exp(cip_flaps_DM1[3,]), exp(cip_limbs_DM1[3,]) 
+             )), 
+   cil = 
+    unlist(c(
+      exp(cip_flaps_DM0[1,]),  exp(cip_limbs_DM0[1,]), exp(cip_flaps_DM1[1,]), exp(cip_limbs_DM1[1,]) 
+             )), 
+    ciu = 
+    unlist(c(
+      exp(cip_flaps_DM0[2,]), exp(cip_limbs_DM0[2,]), exp(cip_flaps_DM1[2,]), exp(cip_limbs_DM1[2,]) 
+             )), 
+  
+  time = rep(time, 4),  group = c(
+    rep("flaps_DM0",100),  rep("limbs_DM0",100), rep("flaps_DM1",100), rep("limbs_DM1",100)
+  ))
+
+predict$group <- factor(predict$group, levels = c(
+  "flaps_DM0","limbs_DM0","flaps_DM1","limbs_DM1") )
+
+cole <- c("#01AF40", "#0000FF","#FF0000",
+          "#FF00FF")
+
+range <- c(0, 100)
+
+tcPO_long <- tcPO_long %>% 
+  mutate(group = fct_recode(group,
+                    'flaps_DM0' = 'DM0.flaps',
+                    'limbs_DM0' = 'DM0.limbs',
+                    'flaps_DM1' = 'DM1.flaps',
+                    'limbs_DM1' = 'DM1.limbs'
+                    ))
+
+fig_01c <- ggplot() +
+  geom_line(data = tcPO_long, 
+            aes(x = time_days, y = TcPO2, group = Site_nest), 
+            alpha = 0.8, color = 'grey70') +
+  geom_line(data = predict, aes(x = time, 
+                                y = prediction, 
+                                group = group,
+                                color = group), size=1.05) +
+  geom_ribbon(data = predict, 
+              aes(x = time, ymin = cil, ymax = ciu, fill = group), 
+              alpha = 0.25, color = NA) +
+  scale_color_manual(values = cole) +
+  scale_fill_manual(values = cole) +
+  labs(x = "Days of experiment", y = 'TcPO2 (mmHg)') +
+  facet_wrap(~group, ncol = 4,  labeller = labeller(group = c("flaps_DM0" = "Non-DM, flaps",
+                                                                       "limbs_DM0" = "Non-DM, limbs",
+                                                                       "flaps_DM1" = "Diabetic, flaps",
+                                                                       "limbs_DM1" = "Diabetic, limbs"))) +
+  scale_x_continuous(breaks = c(0, 7, 14, 28)) 
+
+fig_01c
+```
+
+#### TcPO2-relevant tables
+
+Data preparation for the start of an experiment (***T0***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_tcpo[, c(
+  'DM0.sitedif_T0',
+  'DM1.sitedif_T0',
+  'sitedif_T0', 
+  'flaps.DMdif_T0', 
+  'limbs.DMdif_T0', 
+  'DMdif_T0'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+contrast = c('Limbs vs Flaps (non-diabetic subgroup)', 
+               'Limbs vs Flaps (diabetic subgroup)', 
+               'Limbs vs Flaps (average effect)',
+               'Diabetic vs non-DM (flaps subgroup)',  
+               'Diabetic vs non-DM (limbs subgroup)', 
+               'Diabetic vs non-DM (average effect)'
+               ) 
+
+tcpo_T0_eff <- data.frame(
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+For the end of experiment (***TF***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_tcpo[, c(
+  'DM0.sitedif_TF',
+  'DM1.sitedif_TF',
+  'sitedif_TF', 
+  'flaps.DMdif_TF', 
+  'limbs.DMdif_TF', 
+  'DMdif_TF'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_TF_eff <- data.frame(
+  #contrast, 
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+Differences in slope of changes (fold-difference in 1-week fold-changes)
+
+```{r, collapse=TRUE}
+
+quant <- post_fix_tcpo[, c(
+  'DM0.sitedif_slope',
+  'DM1.sitedif_slope',
+  'sitedif_slope', 
+  'flaps.DMdif_slope', 
+  'limbs.DMdif_slope', 
+  'DMdif_slope'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_slope_eff <- data.frame(
+  #contrast, 
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+
+tot_eff <- cbind(tcpo_T0_eff, tcpo_TF_eff, tcpo_slope_eff)
+row.names(tot_eff) <- contrast  
+```
+
+Estimating TcPO2 across groups
+
+```{r, collapse=TRUE}
+quant <- post_fix_tcpo[, c(
+  'DM0.flaps_T0',
+  'DM0.limbs_T0',
+  'DM1.flaps_T0', 
+  'DM1.limbs_T0', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_T0_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_tcpo[, c(
+  'DM0.flaps_TF',
+  'DM0.limbs_TF',
+  'DM1.flaps_TF', 
+  'DM1.limbs_TF', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_TF_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_tcpo[, c(
+  'DM0.flaps_slope',
+  'DM0.limbs_slope',
+  'DM1.flaps_slope', 
+  'DM1.limbs_slope', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_slope_groupEst <- data.frame(
+  Slope = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+
+tot_est <- cbind(tcpo_T0_groupEst, tcpo_TF_groupEst, tcpo_slope_groupEst)
+row.names(tot_est) <- c("Non-DM flaps",
+                        "Non-DM limbs",
+                        "Diabetic flaps",
+                        "Diabetic limbs") 
+
+```
+
+Printing the tables
+
+```{r, collapse=TRUE}
+
+table_01 <-  kbl(tot_eff, caption = 
+      "Table 1. Estimated differences in TcPO2 between groups at the start (A) and at the end (B) of the experiment, and difference between 1-week fold-change (C, slope). CI_L and CI_U: bounds of the 95% credible interval. PD: probability of direction. Estimates are based on a Bayesian hierarchical generalized linear model with a Gamma distribution and a log-link function.") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) at the start" = 4, 
+                     "(B) at the end" = 4, "(C) difference in slope" = 4)) %>% 
+  column_spec(1, width_min = '2.4in')
+table_01
+
+suppl_table_01 <- kbl(tot_est, caption = 
+      "Suppl. Table 1. Predicted TcPO2 levels at the start (A) and at the end (B) of the experiment, and the 1-week fold-change (C) across groups. CI_L and CI_U represent the bounds of the 95% credible interval. Estimates are derived from a Bayesian hierarchical generalized linear model with a Gamma distribution and a log-link function.") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) TcPO2 at the start" = 3, 
+                     "(B) TcPO2 at the end" = 3, "(C) 1-week fold-change" = 3)) %>% 
+  column_spec(1, width_min = '1.5in')
+suppl_table_01
+```
+
+### Wound area
+
+Posterior draws extraction
+
+```{r, collapse=TRUE}
+## original parameters (groups in middle time)
+post_fix_healing <- as.data.frame(healing_model_int_robust, 
+                          variable = c("b_Intercept","b_time_cen",
+                                       "b_groupDM0.limbs", 
+                                       "b_groupDM1.flaps", 
+                                       "b_groupDM1.limbs",
+                                       "b_time_cen:groupDM0.limbs", 
+                                       "b_time_cen:groupDM1.flaps", 
+                                       "b_time_cen:groupDM1.limbs"))
+
+post_fix_healing <- post_fix_healing %>% mutate(
+  ### posterior distributions of outcome across groups at middle time
+  DM0.flaps = b_Intercept,
+  DM0.limbs = b_Intercept + b_groupDM0.limbs,
+  DM1.flaps = b_Intercept + b_groupDM1.flaps,
+  DM1.limbs = b_Intercept + b_groupDM1.limbs,
+  
+  ### posterior distributions of slopes across groups
+  DM0.flaps_slope = b_time_cen,
+  DM0.limbs_slope = b_time_cen + post_fix_healing$'b_time_cen:groupDM0.limbs',
+  DM1.flaps_slope = b_time_cen + post_fix_healing$'b_time_cen:groupDM1.flaps',
+  DM1.limbs_slope = b_time_cen + post_fix_healing$'b_time_cen:groupDM1.limbs'
+  ) %>% mutate(
+    
+    ### posterior distributions of outcome across group at the starting time
+    DM0.flaps_T0 = DM0.flaps - 1*DM0.flaps_slope,
+    DM0.limbs_T0 = DM0.limbs - 1*DM0.limbs_slope,
+    DM1.flaps_T0 = DM1.flaps - 1*DM1.flaps_slope,
+    DM1.limbs_T0 = DM1.limbs - 1*DM1.limbs_slope,
+    DM0.flaps_TF = DM0.flaps + 1*DM0.flaps_slope,
+    DM0.limbs_TF = DM0.limbs + 1*DM0.limbs_slope,
+    DM1.flaps_TF = DM1.flaps + 1*DM1.flaps_slope,
+    DM1.limbs_TF = DM1.limbs + 1*DM1.limbs_slope
+  ) %>%  mutate(
+    ### difference: diabetes 0 vs. 1 in flaps
+    flaps.DMdif_TM = -DM0.flaps + DM1.flaps,
+    flaps.DMdif_T0 = -DM0.flaps_T0 + DM1.flaps_T0,
+    flaps.DMdif_TF = -DM0.flaps_TF + DM1.flaps_TF,
+    flaps.DMdif_slope = -DM0.flaps_slope + DM1.flaps_slope,
+    
+    ### difference: diabetes 0 vs. 1 in limbs
+    limbs.DMdif_TM = -DM0.limbs +DM1.limbs,
+    limbs.DMdif_T0 = -DM0.limbs_T0  +DM1.limbs_T0,
+    limbs.DMdif_TF = -DM0.limbs_TF  +DM1.limbs_TF,
+    limbs.DMdif_slope = -DM0.limbs_slope +DM1.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 0
+    DM0.sitedif_TM = -DM0.flaps + DM0.limbs, 
+    DM0.sitedif_T0 = -DM0.flaps_T0 + DM0.limbs_T0,
+    DM0.sitedif_TF = -DM0.flaps_TF + DM0.limbs_TF,  
+    DM0.sitedif_slope = -DM0.flaps_slope + DM0.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 1
+    DM1.sitedif_TM = -DM1.flaps + DM1.limbs, 
+    DM1.sitedif_T0 = -DM1.flaps_T0 + DM1.limbs_T0,
+    DM1.sitedif_TF = -DM1.flaps_TF + DM1.limbs_TF,    
+    DM1.sitedif_slope = -DM1.flaps_slope + DM1.limbs_slope) 
+
+## difference: diabetes 0 vs. 1 averaged over both limbs and flaps
+post_fix_healing$DMdif_TM <-  rowMeans(
+  post_fix_healing[,c('flaps.DMdif_TM', 'limbs.DMdif_TM')]
+  )
+
+post_fix_healing$DMdif_T0 <-  rowMeans(
+  post_fix_healing[,c('flaps.DMdif_T0', 'limbs.DMdif_T0')]
+  )
+
+post_fix_healing$DMdif_TF <-  rowMeans(
+  post_fix_healing[,c('flaps.DMdif_TF', 'limbs.DMdif_TF')]
+  )
+
+post_fix_healing$DMdif_slope <-  rowMeans(
+  post_fix_healing[,c('flaps.DMdif_slope', 'limbs.DMdif_slope')]
+  )
+
+## difference: flaps vs. limbs, averaged over both DM statuses
+post_fix_healing$sitedif_TM <-  rowMeans(
+  post_fix_healing[,c('DM0.sitedif_TM', 'DM1.sitedif_TM')]
+  )
+
+post_fix_healing$sitedif_T0 <-  rowMeans(
+  post_fix_healing[,c('DM0.sitedif_T0', 'DM1.sitedif_T0')]
+  )
+
+post_fix_healing$sitedif_TF <-  rowMeans(
+  post_fix_healing[,c('DM0.sitedif_TF', 'DM1.sitedif_TF')]
+  )
+
+post_fix_healing$sitedif_slope <-  rowMeans(
+  post_fix_healing[,c('DM0.sitedif_slope', 'DM1.sitedif_slope')]
+  )
+
+```
+
+#### Posterior distributions of between-groups difference, `SupplFig3`
+
+```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
+#| fig.cap: "Figure 2. Effects of wound site and diabetes on wound area, with 95 (thick line) and 99% (slim line) credible intervals, separately for the starting day of experiment (left), middle day (14 post wound creation, middle), and for 1-week change (wound healing velocity, right).  Upper part (blue) shows effect of limb site either in non-diabetic (non-DM) or diabetic subgroups, and averaged effect (whole posterior distribution). Bottom part (red) shows the effect of diabetes either in flap wound site or limb wound site subgroups, and averaged (whole posterior distribution). PD indicates probability of direction as defined in method, with higher value indicating higher evidence for the effect direction"
+
+## general setting
+
+suppl_fig_02 <- function(){
+m <- matrix(c(1, 3, 4, 5,
+              2, 3, 4, 5), nrow = 2, ncol = 4, byrow = TRUE)
+
+layout(mat = m, 
+       heights = c(0.5, 0.5),
+       widths = c(0.04,rep(0.96/3,3)))
+
+
+
+par(mgp=c(1.6,0.62,0))
+par(mar=c(0,0,0,0))
+
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Limbs vs flaps", 
+     cex=1.3, font=3, col='blue', 
+     xpd=TRUE, srt=90 )
+
+lines(
+  c( .9 , .9),
+  c( -.7, .7),
+  lty = 2, col='blue' )
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Diabetic vs non-DM", col='red3',
+     cex=1.3, font=3, 
+     xpd=TRUE, srt=90)
+
+lines(
+  c( .9 , .9),
+  c( -.55, .85),
+  lty = 2, col='red3' )
+
+
+par(mar=c(2, 0, 1, 0))
+par(mgp = c(0.7, 0.5, 0))
+
+## T0 -------------------------------------------------------------------------------
+xsc = seq(-600, 650, 200)
+ysc = c(0, 0.04)
+
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="Difference in 1st measurement", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+
+ci(post_fix_healing, 'DMdif_T0', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'DMdif_T0', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'flaps.DMdif_T0', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'limbs.DMdif_T0', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_healing, 'sitedif_T0', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'sitedif_T0', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'DM1.sitedif_T0', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'DM0.sitedif_T0', y, 'blue', xsc)
+
+text(min(xsc) + 0.19*xscal,
+     max(ysc)*0.975,
+     "non-DM subgroup", cex = 1.1)
+
+text(min(xsc) + 0.19*xscal,
+     max(ysc)*0.915,
+     "diabetic subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.66,
+     "average effect", cex = 1.1)
+
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.45,
+     "limbs subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.38,
+     "flaps subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.13,
+     "average effect", cex = 1.1)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$sitedif_T0, 'max', 0) , 2 
+         )
+       )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$DMdif_T0, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+
+## TF --------------------------------------------------------------------------------
+xsc = seq(-400, 650, 200)
+ysc = c(0, .05)
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="Difference after a week", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix_healing, 'DMdif_TF', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'DMdif_TF', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'flaps.DMdif_TF', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'limbs.DMdif_TF', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_healing, 'sitedif_TF', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'sitedif_TF', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'DM1.sitedif_TF', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'DM0.sitedif_TF', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$sitedif_TF, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$DMdif_TF, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+## slope ----------------------------------------------------------------------------
+xsc = round(seq(-300, 220, by = 100), 5)
+ysc = c(0, 0.07)
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="Difference in change over time", 
+  ylab="", 
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix_healing, 'DMdif_slope', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'DMdif_slope', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'flaps.DMdif_slope', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'limbs.DMdif_slope', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix_healing, 'sitedif_slope', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix_healing, 'sitedif_slope', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix_healing, 'DM1.sitedif_slope', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix_healing, 'DM0.sitedif_slope', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$sitedif_slope, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix_healing$DMdif_slope, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+}
+
+## Printing
+
+suppl_fig_02()
+```
+
+#### Model-estimated wound area over time, `Figure 2`
+
+```{r, fig.height=4, fig.width=6}
+time <- seq(0, 14, length=100)
+time_z <- seq(-1, 1, length=100)
+
+
+cip_flaps_DM0 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_flaps_DM0[1:12000,i] <-  post_fix_healing$DM0.flaps + post_fix_healing$DM0.flaps_slope*time_z[i]}
+cip_flaps_DM0  <- sapply(cip_flaps_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_flaps_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_flaps_DM1[1:12000,i] <-  post_fix_healing$DM1.flaps + post_fix_healing$DM1.flaps_slope*time_z[i]}
+cip_flaps_DM1  <- sapply(cip_flaps_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM0 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM0[1:12000,i] <-  post_fix_healing$DM0.limbs + post_fix_healing$DM0.limbs_slope*time_z[i]}
+cip_limbs_DM0  <- sapply(cip_limbs_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM1[1:12000,i] <-  post_fix_healing$DM1.limbs + post_fix_healing$DM1.limbs_slope*time_z[i]}
+cip_limbs_DM1  <- sapply(cip_limbs_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+predict <- data.frame(
+  prediction = 
+    unlist(c(
+      (cip_flaps_DM0[3,]), (cip_limbs_DM0[3,]), (cip_flaps_DM1[3,]), (cip_limbs_DM1[3,]) 
+             )), 
+   cil = 
+    unlist(c(
+      (cip_flaps_DM0[1,]), (cip_limbs_DM0[1,]), (cip_flaps_DM1[1,]),  (cip_limbs_DM1[1,]) 
+             )), 
+    ciu = 
+    unlist(c(
+      (cip_flaps_DM0[2,]), (cip_limbs_DM0[2,]), (cip_flaps_DM1[2,]), (cip_limbs_DM1[2,]) 
+             )), 
+  
+  time = rep(time, 4),  group = c(
+    rep("flaps_DM0",100), rep("limbs_DM0",100),  rep("flaps_DM1",100), rep("limbs_DM1",100)
+  ))
+
+
+predict$group <- factor(predict$group, levels = c(
+  "flaps_DM0","limbs_DM0","flaps_DM1","limbs_DM1") )
+
+cole <- c("#01AF40", "#0000FF","#FF0000",
+          "#FF00FF")
+
+healing_long <- healing_long %>% 
+  mutate(group = fct_recode(group,
+                    'flaps_DM0' = 'DM0.flaps',
+                    'limbs_DM0' = 'DM0.limbs',
+                    'flaps_DM1' = 'DM1.flaps',
+                    'limbs_DM1' = 'DM1.limbs'
+                    ))
+
+fig_02c <- ggplot() +
+  geom_line(data = healing_long, 
+            aes(x = time_days, y = healing, group = Site_nest), 
+            alpha = 0.8, color = 'grey70') +
+  geom_line(data = predict, aes(x = time, 
+                                y = prediction, 
+                                group = group,
+                                color = group), size=1.05) +
+  geom_ribbon(data = predict, 
+              aes(x = time, ymin = cil, ymax = ciu, fill = group), 
+              alpha = 0.25, color = NA) +
+  scale_color_manual(values = cole) +
+  scale_fill_manual(values = cole) +
+  labs(x = "Days of experiment", y = expression(Wound~area~(mm^2))) +
+  facet_wrap(~group, ncol = 4,  labeller = labeller(group = c("flaps_DM0" = "Non-DM, flaps",
+                                                                       "limbs_DM0" = "Non-DM, limbs",
+                                                                       "flaps_DM1" = "Diabetic, flaps",
+                                                                       "limbs_DM1" = "Diabetic, limbs"))) +
+ scale_x_continuous(breaks=c(0, 7, 14)) 
+
+fig_02c
+```
+
+#### Wound area-related tables
+
+Start of an experiment (***T0***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing[, c(
+  'DM0.sitedif_T0',
+  'DM1.sitedif_T0',
+  'sitedif_T0', 
+  'flaps.DMdif_T0', 
+  'limbs.DMdif_T0', 
+  'DMdif_T0'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+contrast = c('Limbs vs Flaps (non-diabetic subgroup)', 
+               'Limbs vs Flaps (diabetic subgroup)', 
+               'Limbs vs Flaps (average effect)',
+               'Diabetic vs non-DM (flaps subgroup)',  
+               'Diabetic vs non-DM (limbs subgroup)', 
+               'Diabetic vs non-DM (average effect)'
+               ) 
+
+tcpo_T0_eff <- data.frame(
+  Diff = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+At the end of experiment (***TF***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing[, c(
+  'DM0.sitedif_TF',
+  'DM1.sitedif_TF',
+  'sitedif_TF', 
+  'flaps.DMdif_TF', 
+  'limbs.DMdif_TF', 
+  'DMdif_TF'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_TF_eff <- data.frame(
+  Diff= c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+Differences in slope of changes (fold-difference in 1-week fold-changes)
+
+```{r, collapse=TRUE}
+
+quant <- post_fix_healing[, c(
+  'DM0.sitedif_slope',
+  'DM1.sitedif_slope',
+  'sitedif_slope', 
+  'flaps.DMdif_slope', 
+  'limbs.DMdif_slope', 
+  'DMdif_slope'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_slope_eff <- data.frame(
+  Diff = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+
+tot_eff <- cbind(tcpo_T0_eff, tcpo_TF_eff, tcpo_slope_eff)
+row.names(tot_eff) <- contrast  
+```
+
+Estimating wound area across groups
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing[, c(
+  'DM0.flaps_T0',
+  'DM0.limbs_T0',
+  'DM1.flaps_T0', 
+  'DM1.limbs_T0', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_T0_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_healing[, c(
+  'DM0.flaps_TF',
+  'DM0.limbs_TF',
+  'DM1.flaps_TF', 
+  'DM1.limbs_TF', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_TF_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_healing[, c(
+  'DM0.flaps_slope',
+  'DM0.limbs_slope',
+  'DM1.flaps_slope', 
+  'DM1.limbs_slope', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_slope_groupEst <- data.frame(
+  Slope = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+
+tot_est <- cbind(tcpo_T0_groupEst, tcpo_TF_groupEst, tcpo_slope_groupEst)
+row.names(tot_est) <- c("Non-DM flaps",
+                        "Non-DM limbs",
+                        "Diabetic flaps",
+                        "Diabetic limbs") 
+
+```
+
+Printing the tables
+
+```{r, collapse=TRUE}
+
+table_02 <- kbl(tot_eff, caption = 
+      "Table 2. Estimated differences in wound area between groups at the start (A, D0) and at the end (B, D14) of the experiment, and the change in wound area over time, reflecting healing velocity (C, slope). The more negative the slope, the greater the healing velocity. CI_L and CI_U represent the bounds of the 95% credible interval. PD indicates the probability of direction. Estimates are derived from a robust Bayesian hierarchical linear model.") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) at the start" = 4, 
+                     "(B) at the end" = 4, "(C) difference in slope" = 4)) %>% 
+  column_spec(1, width_min = '2.2in')
+
+suppl_table_02 <- kbl(tot_est, caption = 
+      "Suppl. Table 2. Predicted wound area at the start (A, day 0) and at the end (B, 14th day) of the experiment, and its 1-week change, i.e. helaing velocity (C, slope) across groups. CI_L and CI_U represent the bounds of the 95% credible interval. Estimates are derived from a robust Bayesian hierarchical linear model.") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) Wound area at the start" = 3, 
+                     "(B) Wound area at the end" = 3, "(C) 1-week change" = 3)) %>% 
+  column_spec(1, width_min = '1.5in')
+
+table_02
+suppl_table_02
+```
+
+### Wound area, random slope
+
+Posterior draws extraction
+
+```{r, collapse=TRUE}
+## original parameters (groups in middle time)
+post_fix_healing_rslope <- as.data.frame(healing_model_int_rslope,
+                          variable = c("b_Intercept","b_time_cen",
+                                       "b_groupDM0.limbs", 
+                                       "b_groupDM1.flaps", 
+                                       "b_groupDM1.limbs",
+                                       "b_time_cen:groupDM0.limbs", 
+                                       "b_time_cen:groupDM1.flaps", 
+                                       "b_time_cen:groupDM1.limbs"))
+
+post_fix_healing_rslope <- post_fix_healing_rslope %>% mutate(
+  ### posterior distributions of outcome across groups at middle time
+  DM0.flaps = b_Intercept,
+  DM0.limbs = b_Intercept + b_groupDM0.limbs,
+  DM1.flaps = b_Intercept + b_groupDM1.flaps,
+  DM1.limbs = b_Intercept + b_groupDM1.limbs,
+  
+  ### posterior distributions of slopes across groups
+  DM0.flaps_slope = b_time_cen,
+  DM0.limbs_slope = b_time_cen + post_fix_healing_rslope$'b_time_cen:groupDM0.limbs',
+  DM1.flaps_slope = b_time_cen + post_fix_healing_rslope$'b_time_cen:groupDM1.flaps',
+  DM1.limbs_slope = b_time_cen + post_fix_healing_rslope$'b_time_cen:groupDM1.limbs'
+  ) %>% mutate(
+    
+    ### posterior distributions of outcome across group at the starting time
+    DM0.flaps_T0 = DM0.flaps - 1*DM0.flaps_slope,
+    DM0.limbs_T0 = DM0.limbs - 1*DM0.limbs_slope,
+    DM1.flaps_T0 = DM1.flaps - 1*DM1.flaps_slope,
+    DM1.limbs_T0 = DM1.limbs - 1*DM1.limbs_slope,
+    DM0.flaps_TF = DM0.flaps + 1*DM0.flaps_slope,
+    DM0.limbs_TF = DM0.limbs + 1*DM0.limbs_slope,
+    DM1.flaps_TF = DM1.flaps + 1*DM1.flaps_slope,
+    DM1.limbs_TF = DM1.limbs + 1*DM1.limbs_slope
+  ) %>%  mutate(
+    ### difference: diabetes 0 vs. 1 in flaps
+    flaps.DMdif_TM = -DM0.flaps + DM1.flaps,
+    flaps.DMdif_T0 = -DM0.flaps_T0 + DM1.flaps_T0,
+    flaps.DMdif_TF = -DM0.flaps_TF + DM1.flaps_TF,
+    flaps.DMdif_slope = -DM0.flaps_slope + DM1.flaps_slope,
+    
+    ### difference: diabetes 0 vs. 1 in limbs
+    limbs.DMdif_TM = -DM0.limbs +DM1.limbs,
+    limbs.DMdif_T0 = -DM0.limbs_T0  +DM1.limbs_T0,
+    limbs.DMdif_TF = -DM0.limbs_TF  +DM1.limbs_TF,
+    limbs.DMdif_slope = -DM0.limbs_slope +DM1.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 0
+    DM0.sitedif_TM = -DM0.flaps + DM0.limbs, 
+    DM0.sitedif_T0 = -DM0.flaps_T0 + DM0.limbs_T0,
+    DM0.sitedif_TF = -DM0.flaps_TF + DM0.limbs_TF,  
+    DM0.sitedif_slope = -DM0.flaps_slope + DM0.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 1
+    DM1.sitedif_TM = -DM1.flaps + DM1.limbs, 
+    DM1.sitedif_T0 = -DM1.flaps_T0 + DM1.limbs_T0,
+    DM1.sitedif_TF = -DM1.flaps_TF + DM1.limbs_TF,    
+    DM1.sitedif_slope = -DM1.flaps_slope + DM1.limbs_slope) 
+
+## difference: diabetes 0 vs. 1 averaged over both limbs and flaps
+post_fix_healing_rslope$DMdif_TM <-  rowMeans(
+  post_fix_healing_rslope[,c('flaps.DMdif_TM', 'limbs.DMdif_TM')]
+  )
+
+post_fix_healing_rslope$DMdif_T0 <-  rowMeans(
+  post_fix_healing_rslope[,c('flaps.DMdif_T0', 'limbs.DMdif_T0')]
+  )
+
+post_fix_healing_rslope$DMdif_TF <-  rowMeans(
+  post_fix_healing_rslope[,c('flaps.DMdif_TF', 'limbs.DMdif_TF')]
+  )
+
+post_fix_healing_rslope$DMdif_slope <-  rowMeans(
+  post_fix_healing_rslope[,c('flaps.DMdif_slope', 'limbs.DMdif_slope')]
+  )
+
+## difference: flaps vs. limbs, averaged over both DM statuses
+post_fix_healing_rslope$sitedif_TM <-  rowMeans(
+  post_fix_healing_rslope[,c('DM0.sitedif_TM', 'DM1.sitedif_TM')]
+  )
+
+post_fix_healing_rslope$sitedif_T0 <-  rowMeans(
+  post_fix_healing_rslope[,c('DM0.sitedif_T0', 'DM1.sitedif_T0')]
+  )
+
+post_fix_healing_rslope$sitedif_TF <-  rowMeans(
+  post_fix_healing_rslope[,c('DM0.sitedif_TF', 'DM1.sitedif_TF')]
+  )
+
+post_fix_healing_rslope$sitedif_slope <-  rowMeans(
+  post_fix_healing_rslope[,c('DM0.sitedif_slope', 'DM1.sitedif_slope')]
+  )
+```
+
+Preparing data for tables
+
+Start of an experiment (***T0***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing_rslope[, c(
+  'DM0.sitedif_T0',
+  'DM1.sitedif_T0',
+  'sitedif_T0', 
+  'flaps.DMdif_T0', 
+  'limbs.DMdif_T0', 
+  'DMdif_T0'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+contrast = c('Limbs vs Flaps (non-diabetic subgroup)', 
+               'Limbs vs Flaps (diabetic subgroup)', 
+               'Limbs vs Flaps (average effect)',
+               'Diabetic vs non-DM (flaps subgroup)',  
+               'Diabetic vs non-DM(limbs subgroup)', 
+               'Diabetic vs non-DM (average effect)'
+               ) 
+
+tcpo_T0_eff <- data.frame(
+  Diff = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+At the end of experiment (***TF***)
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing_rslope[, c(
+  'DM0.sitedif_TF',
+  'DM1.sitedif_TF',
+  'sitedif_TF', 
+  'flaps.DMdif_TF', 
+  'limbs.DMdif_TF', 
+  'DMdif_TF'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_TF_eff <- data.frame(
+  Diff= c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+Differences in slope of changes (fold-difference in 1-week fold-changes)
+
+```{r, collapse=TRUE}
+
+quant <- post_fix_healing_rslope[, c(
+  'DM0.sitedif_slope',
+  'DM1.sitedif_slope',
+  'sitedif_slope', 
+  'flaps.DMdif_slope', 
+  'limbs.DMdif_slope', 
+  'DMdif_slope'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_slope_eff <- data.frame(
+  Diff = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+
+tot_eff <- cbind(tcpo_T0_eff, tcpo_TF_eff, tcpo_slope_eff)
+row.names(tot_eff) <- contrast  
+```
+
+Estimating wound area across groups
+
+```{r, collapse=TRUE}
+quant <- post_fix_healing_rslope[, c(
+  'DM0.flaps_T0',
+  'DM0.limbs_T0',
+  'DM1.flaps_T0', 
+  'DM1.limbs_T0', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_T0_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_healing_rslope[, c(
+  'DM0.flaps_TF',
+  'DM0.limbs_TF',
+  'DM1.flaps_TF', 
+  'DM1.limbs_TF', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_TF_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix_healing_rslope[, c(
+  'DM0.flaps_slope',
+  'DM0.limbs_slope',
+  'DM1.flaps_slope', 
+  'DM1.limbs_slope', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(quant[, i], 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe)
+
+tcpo_slope_groupEst <- data.frame(
+  Slope = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+
+tot_est <- cbind(tcpo_T0_groupEst, tcpo_TF_groupEst, tcpo_slope_groupEst)
+row.names(tot_est) <- c("Non-DM flaps",
+                        "Non-DM limbs",
+                        "Diabetic flaps",
+                        "Diabetic limbs") 
+
+```
+
+#### Tables
+
+Printing the tables
+
+```{r, collapse=TRUE}
+
+suppl_table_03 <- kbl(tot_eff, caption = 
+      "Suppl. Table 3. Estimated differences in wound area between groups on the start (A, D0) and at th end (B, D14) of experiment, and difference between the rate of change per a week (C, slope). CI_L and CI_U: bounds of 95% credible interval. PD: probability of direction. Estimates are based on Bayesian hierarchical linear model, modelling both random intercept and slope and their covariance") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) on the start" = 4, 
+                     "(B) at the end" = 4, "(C) difference in slope" = 4)) %>% 
+  column_spec(1, width_min = '2.2in')
+
+suppl_table_04 <- kbl(tot_est, caption = 
+      "Suppl. Table 4. Predicted wound area on the start (A, day 0) and at the end (B, 14th day) of experiment, and 1-week change, reflecting healing (C, change per week) across groups. CI_L and CI_U: bounds of 95% credible interval. Estimates are based on Bayesian hierarchical linear model, modelling both random intercept and slope and their covariance") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) Wound area on the start" = 3, 
+                     "(B) Wound area at the end" = 3, "(C) 1-week change" = 3)) %>% 
+  column_spec(1, width_min = '1.5in')
+
+suppl_table_03
+suppl_table_04
+```
+
+### Vessel index
+
+Posterior draws extraction
+
+```{r, collapse=TRUE}
+## original parameters (groups in middle time)
+post_fix <- as.data.frame(vessel_model_int_gamma, 
+                          variable = c("b_Intercept","b_time_cen",
+                                       "b_groupDM0.limbs", 
+                                       "b_groupDM1.flaps", 
+                                       "b_groupDM1.limbs",
+                                       "b_time_cen:groupDM0.limbs", 
+                                       "b_time_cen:groupDM1.flaps", 
+                                       "b_time_cen:groupDM1.limbs"))
+
+post_fix <- post_fix %>% mutate(
+  ### posterior distributions of outcome across groups at middle time
+  DM0.flaps = b_Intercept,
+  DM0.limbs = b_Intercept + b_groupDM0.limbs,
+  DM1.flaps = b_Intercept + b_groupDM1.flaps,
+  DM1.limbs = b_Intercept + b_groupDM1.limbs,
+  
+  ### posterior distributions of slopes across groups
+  DM0.flaps_slope = b_time_cen,
+  DM0.limbs_slope = b_time_cen + post_fix$'b_time_cen:groupDM0.limbs',
+  DM1.flaps_slope = b_time_cen + post_fix$'b_time_cen:groupDM1.flaps',
+  DM1.limbs_slope = b_time_cen + post_fix$'b_time_cen:groupDM1.limbs'
+  ) %>% mutate(
+    
+    ### posterior distributions of outcome across group at the starting time
+    DM0.flaps_T0 = DM0.flaps - 1.5*DM0.flaps_slope,
+    DM0.limbs_T0 = DM0.limbs - 1.5*DM0.limbs_slope,
+    DM1.flaps_T0 = DM1.flaps - 1.5*DM1.flaps_slope,
+    DM1.limbs_T0 = DM1.limbs - 1.5*DM1.limbs_slope,
+    DM0.flaps_TF = DM0.flaps + 1.5*DM0.flaps_slope,
+    DM0.limbs_TF = DM0.limbs + 1.5*DM0.limbs_slope,
+    DM1.flaps_TF = DM1.flaps + 1.5*DM1.flaps_slope,
+    DM1.limbs_TF = DM1.limbs + 1.5*DM1.limbs_slope
+  ) %>%  mutate(
+    ### difference: diabetes 0 vs. 1 in flaps
+    flaps.DMdif_TM = -DM0.flaps + DM1.flaps,
+    flaps.DMdif_T0 = -DM0.flaps_T0 + DM1.flaps_T0,
+    flaps.DMdif_TF = -DM0.flaps_TF + DM1.flaps_TF,    
+    flaps.DMdif_slope = -DM0.flaps_slope + DM1.flaps_slope,
+    
+    ### difference: diabetes 0 vs. 1 in limbs
+    limbs.DMdif_TM = -DM0.limbs +DM1.limbs,
+    limbs.DMdif_T0 = -DM0.limbs_T0  +DM1.limbs_T0,
+    limbs.DMdif_TF = -DM0.limbs_TF  +DM1.limbs_TF,
+    limbs.DMdif_slope = -DM0.limbs_slope +DM1.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 0
+    DM0.sitedif_TM = -DM0.flaps + DM0.limbs, 
+    DM0.sitedif_T0 = -DM0.flaps_T0 + DM0.limbs_T0,
+    DM0.sitedif_TF = -DM0.flaps_TF + DM0.limbs_TF,    
+    DM0.sitedif_slope = -DM0.flaps_slope + DM0.limbs_slope,
+    
+    ### difference in flaps vs. limbs in diabetes 1
+    DM1.sitedif_TM = -DM1.flaps + DM1.limbs, 
+    DM1.sitedif_T0 = -DM1.flaps_T0 + DM1.limbs_T0,
+    DM1.sitedif_TF = -DM1.flaps_TF + DM1.limbs_TF,  
+    DM1.sitedif_slope = -DM1.flaps_slope + DM1.limbs_slope) 
+
+## difference: diabetes 0 vs. 1 averaged over both limbs and flaps
+post_fix$DMdif_TM <-  rowMeans(
+  post_fix[,c('flaps.DMdif_TM', 'limbs.DMdif_TM')]
+  )
+
+post_fix$DMdif_T0 <-  rowMeans(
+  post_fix[,c('flaps.DMdif_T0', 'limbs.DMdif_T0')]
+  )
+
+post_fix$DMdif_TF <-  rowMeans(
+  post_fix[,c('flaps.DMdif_TF', 'limbs.DMdif_TF')]
+  )
+
+post_fix$DMdif_slope <-  rowMeans(
+  post_fix[,c('flaps.DMdif_slope', 'limbs.DMdif_slope')]
+  )
+
+## difference: flaps vs. limbs, averaged over both DM statuses
+post_fix$sitedif_TM <-  rowMeans(
+  post_fix[,c('DM0.sitedif_TM', 'DM1.sitedif_TM')]
+  )
+
+post_fix$sitedif_T0 <-  rowMeans(
+  post_fix[,c('DM0.sitedif_T0', 'DM1.sitedif_T0')]
+  )
+
+post_fix$sitedif_TF <-  rowMeans(
+  post_fix[,c('DM0.sitedif_TF', 'DM1.sitedif_TF')]
+  )
+
+post_fix$sitedif_slope <-  rowMeans(
+  post_fix[,c('DM0.sitedif_slope', 'DM1.sitedif_slope')]
+  )
+
+```
+
+#### Posterior distributions of between-groups difference, `SupplFig3`
+
+```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
+#| fig.cap: "Figure: Effects of wound site and diabetes on Vessel index, with 95% (thick line) and 99% (slim line) credible intervals, separately for the starting (left), and final (middle) days of the experiment, and for 1-week change (right).  Upper part (blue) shows effect of limb site either in non-diabetic (non-DM) or diabetic subgroups, and averaged effect (whole posterior distribution). Bottom part (red) shows the effect of diabetes either in flap  or limb wound sites subgroups, and averaged (whole posterior distribution). PD indicates probability of direction as defined in method, with higher value indicating higher evidence for the effect. Posterior distributions are estimated with rBayesian hierarchical model with Gamma distribution and log-link"
+
+## general setting
+
+suppl_fig_03 <- function(){
+m <- matrix(c(1, 3, 4, 5,
+              2, 3, 4, 5), nrow = 2, ncol = 4, byrow = TRUE)
+
+layout(mat = m, 
+       heights = c(0.5, 0.5),
+       widths = c(0.04,rep(0.96/3,3)))
+
+
+par(mgp=c(1.6,0.62,0))
+par(mar=c(0,0,0,0))
+
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Limbs vs flaps", 
+     cex=1.3, font=3, col='blue', 
+     xpd=TRUE, srt=90 )
+
+lines(
+  c( .9 , .9),
+  c( -.7, .7),
+  lty = 2, col='blue' )
+
+plot(NULL, axes=FALSE,xlab="",ylab="",xlim=c(-1,1),ylim=c(-0.85,0.85))
+
+text(0, 0 ,"Diabetic vs non-diabetic", col='red3',
+     cex=1.3, font=3, 
+     xpd=TRUE, srt=90)
+
+lines(
+  c( .9 , .9),
+  c( -.55, .85),
+  lty = 2, col='red3' )
+
+
+par(mar=c(2, 0, 1, 0))
+par(mgp = c(0.7, 0.5, 0))
+
+## T0 -------------------------------------------------------------------------------
+xsc = seq(-2, 3, 1)
+ysc = c(0, 10)
+
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio at start", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+  )
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+
+ci(post_fix, 'DMdif_T0', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'DMdif_T0', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'flaps.DMdif_T0', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'limbs.DMdif_T0', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix, 'sitedif_T0', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'sitedif_T0', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'DM1.sitedif_T0', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'DM0.sitedif_T0', y, 'blue', xsc)
+
+text(min(xsc) + 0.2*xscal,
+     max(ysc)*0.975,
+     "non-DM subgroup", cex = 1.1)
+
+text(min(xsc) + 0.2*xscal,
+     max(ysc)*0.915,
+     "diabetic subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.66,
+     "average effect", cex = 1.1)
+
+
+text(min(xsc) + 0.18*xscal,
+     max(ysc)*0.45,
+     "limbs subgroup", cex = 1.1)
+
+text(min(xsc) + 0.18*xscal,
+     max(ysc)*0.38,
+     "flaps subgroup", cex = 1.1)
+
+text(min(xsc) + 0.17*xscal,
+     max(ysc)*0.13,
+     "average effect", cex = 1.1)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$sitedif_T0, 'max', 0) , 2 
+         )
+       )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$DMdif_T0, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+
+## TM --------------------------------------------------------------------------------
+xsc = seq(-2, 2, 1)
+ysc = c(0, 10)
+
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio at the end", 
+  ylab="",
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc), max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix, 'DMdif_TF', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'DMdif_TF', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'flaps.DMdif_TF', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'limbs.DMdif_TF', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix, 'sitedif_TF', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'sitedif_TF', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'DM1.sitedif_TF', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'DM0.sitedif_TF', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$sitedif_TF, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$DMdif_TF, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'red3' )
+
+## slope ----------------------------------------------------------------------------
+xsc = round(seq(-1, 1, by = 0.5), 5)
+ysc = c(0, 20)
+xscal <- max(xsc) - min(xsc)
+
+plot(
+  NULL, axes=FALSE, 
+  xlab="log-ratio in magnitudes of change over a week", 
+  ylab="", 
+  cex.lab = 1.15,
+  xlim = c( min(xsc), max(xsc) ) , 
+  ylim = c( min(ysc), max(ysc) )
+)
+
+
+rect( min(xsc), 0, max(xsc) , max(ysc), col='grey91', border=NA)
+
+
+for(i in 1:length(xsc) ) {
+  lines(c(xsc[i], xsc[i]), c(0, -0.02*max(ysc) ), xpd=TRUE)  
+  lines(c(xsc[i], xsc[i]), c(0, ysc[2]), xpd=TRUE, col = 'white')  
+}
+
+for(i in 1:length(xsc) ) {
+  text(
+    xsc[i], -0.04*max(ysc), xsc[i], xpd=TRUE
+  )  
+}
+
+lines(c(0,0), c(0, max(ysc)), lty=2)
+lines(c(min(xsc), max(xsc) ), c(0, 0), xpd=TRUE)
+
+y <- 0.05*max(ysc)
+
+ci(post_fix, 'DMdif_slope', y, 'red3', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'DMdif_slope', y, rgb(1, 0, 0, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'flaps.DMdif_slope', y, 'red3', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'limbs.DMdif_slope', y, 'red3', xsc);y = y + 0.16*max(ysc)
+
+
+ci(post_fix, 'sitedif_slope', y, 'blue', xsc);y = y + 0.04*max(ysc)
+cur(post_fix, 'sitedif_slope', y, rgb(.1, 0.1, 1, alpha=0.4));y = y + 0.27*max(ysc)
+
+ci(post_fix, 'DM1.sitedif_slope', y, 'blue', xsc);y = y + 0.06*max(ysc)
+ci(post_fix, 'DM0.sitedif_slope', y, 'blue', xsc)
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.7,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$sitedif_slope, 'max', 0) , 2 
+       )
+     )
+     ), 
+     col= 'blue' )
+
+text(min(xsc) + 0.8*xscal,
+     max(ysc)*0.15,
+     bquote("PD= "* .(
+       round(
+         p_dir(post_fix$DMdif_slope, 'max', 0) , 3 
+       )
+     )
+     ), 
+     col= 'red3' )
+}
+
+suppl_fig_03()
+```
+
+The figure does not suggest any reliable between-group difference in terms of final values of vessel
+index or rate of change.
+
+#### Vessel index-related tables
+
+Start of an experiment (***T0***)
+
+```{r, collapse=TRUE}
+quant <- post_fix[, c(
+  'DM0.sitedif_T0',
+  'DM1.sitedif_T0',
+  'sitedif_T0', 
+  'flaps.DMdif_T0', 
+  'limbs.DMdif_T0', 
+  'DMdif_T0'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+contrast = c('Limbs vs Flaps (non-DM subgroup)', 
+               'Limbs vs Flaps (diabetic subgroup)', 
+               'Limbs vs Flaps (average effect)',
+               'Diabetic vs non-DM (flaps subgroup)',  
+               'Diabetic vs non-DM (limbs subgroup)', 
+               'Diabetic vs non-DM (average effect)'
+               ) 
+
+tcpo_T0_eff <- data.frame(
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+At the end of experiment (***TF***)
+
+```{r, collapse=TRUE}
+quant <- post_fix[, c(
+  'DM0.sitedif_TF',
+  'DM1.sitedif_TF',
+  'sitedif_TF', 
+  'flaps.DMdif_TF', 
+  'limbs.DMdif_TF', 
+  'DMdif_TF'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_TF_eff <- data.frame(
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+```
+
+Differences in slope of changes (fold-difference in 1-week fold-changes)
+
+```{r, collapse=TRUE}
+
+quant <- post_fix[, c(
+  'DM0.sitedif_slope',
+  'DM1.sitedif_slope',
+  'sitedif_slope', 
+  'flaps.DMdif_slope', 
+  'limbs.DMdif_slope', 
+  'DMdif_slope'   ) ] 
+
+qe <- data.frame()
+
+for(i in 1:6){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+  ) 
+}
+
+qe <- round(qe, 2)
+
+pd <- c()
+
+for(i in 1:6) {
+  pd[i] <- p_dir(quant[,i], 'max', 0)
+  }
+
+tcpo_slope_eff <- data.frame(
+  #contrast, 
+  Ratio = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]),
+  PD = round(pd, 3)
+  )
+
+tot_eff <- cbind(tcpo_T0_eff, tcpo_TF_eff, tcpo_slope_eff)
+row.names(tot_eff) <- contrast  
+```
+
+Estimating Vessel index across groups
+
+```{r, collapse=TRUE}
+quant <- post_fix[, c(
+  'DM0.flaps_T0',
+  'DM0.limbs_T0',
+  'DM1.flaps_T0', 
+  'DM1.limbs_T0', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_T0_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix[, c(
+  'DM0.flaps_TF',
+  'DM0.limbs_TF',
+  'DM1.flaps_TF', 
+  'DM1.limbs_TF', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_TF_groupEst <- data.frame(
+  Estimate = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+quant <- post_fix[, c(
+  'DM0.flaps_slope',
+  'DM0.limbs_slope',
+  'DM1.flaps_slope', 
+  'DM1.limbs_slope', 
+  'limbs.DMdif_slope' ) ] 
+
+qe <- data.frame()
+
+for(i in 1:4){
+qe[i,1:3] <- quantile(exp(quant[, i]), 
+                        probs = c(0.5, 0.025, 0.975)
+                      ) }
+qe <- round(qe, 2)
+
+tcpo_slope_groupEst <- data.frame(
+  Slope = c(qe[,1]), 
+  CI_L = c(qe[,2]), 
+  CI_U = c(qe[,3]) )
+
+
+tot_est <- cbind(tcpo_T0_groupEst, tcpo_TF_groupEst, tcpo_slope_groupEst)
+row.names(tot_est) <- c("Non-DM flaps",
+                        "Non-DM limbs",
+                        "Diabetic flaps",
+                        "Diabetic limbs") 
+
+```
+
+Printing the tables
+
+```{r, collapse=TRUE}
+table_03 <- kbl(tot_eff, caption = 
+      "Table 3. Estimated differences in Vessel index between groups on the 7th (A) and 28th (B) day after wound formation, and difference between 1-week fold-change (C, slope). CI_L and CI_U: bounds of 95% credible interval. PD: probability of direction. Estimates are based on Bayesian hierarchical gamma regression with log-link") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) D7" = 4, 
+                     "(B) D28" = 4, "(C) difference in slope" = 4)) %>% 
+  column_spec(1, width_min = '2.2in')
+table_03
+
+suppl_table_05 <- kbl(tot_est, caption = 
+      "Suppl. Table 5. Predicted vessel index on the 7th (A) and 28th (B) day after wound formation, 1-week fold-change (C, slope) across groups. CI_L and CI_U: bounds of 95% credible interval. Estimates are based on Bayesian hierarchical gamma regression with log-link") %>% 
+  kable_styling("striped",full_width = T) %>% 
+  add_header_above(c(" " = 1, "(A) TcPO2 at the start" = 3, 
+                     "(B) TcPO2 at the end" = 3, "(C) 1-week fold-change" = 3)) %>% 
+  column_spec(1, width_min = '1.5in')
+
+suppl_table_05
+```
+
+#### Model-estimated vessel index over time, `Figure 3`
+
+```{r, fig.height=4, fig.width=6}
+#| fig.cap: "Figure: Estimated vessel index over the time, spearately for each group. Wide line show median posterior fit, polygons (bordered with dashed lines) show 95% credible intervals. The estimation was based on Bayesian hierarchical generalized linear model with Gamma likelihood and log-link function"
+
+time <- seq(7, 28, length=100)
+time_z <- seq(-1.5, 1.5, length=100)
+
+cip_flaps_DM0 <- data.frame()
+
+for(i in 1:length(time_z)){
+    cip_flaps_DM0[1:12000,i] <-  post_fix$DM0.flaps + post_fix$DM0.flaps_slope*time_z[i]}
+cip_flaps_DM0  <- sapply(cip_flaps_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_flaps_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_flaps_DM1[1:12000,i] <-  post_fix$DM1.flaps + post_fix$DM1.flaps_slope*time_z[i]}
+cip_flaps_DM1  <- sapply(cip_flaps_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM0 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM0[1:12000,i] <-  post_fix$DM0.limbs + post_fix$DM0.limbs_slope*time_z[i]}
+cip_limbs_DM0  <- sapply(cip_limbs_DM0 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+cip_limbs_DM1 <- data.frame()
+for(i in 1:length(time_z)){
+    cip_limbs_DM1[1:12000,i] <-  post_fix$DM1.limbs + post_fix$DM1.limbs_slope*time_z[i]}
+cip_limbs_DM1  <- sapply(cip_limbs_DM1 , function(p) quantile(p, probs = c(0.025,0.975,0.5)))
+
+
+predict <- data.frame(
+  prediction = 
+    unlist(c(
+      exp(cip_flaps_DM0[3,]),  exp(cip_limbs_DM0[3,]), exp(cip_flaps_DM1[3,]), exp(cip_limbs_DM1[3,]) 
+             )), 
+   cil = 
+    unlist(c(
+      exp(cip_flaps_DM0[1,]), exp(cip_limbs_DM0[1,]), exp(cip_flaps_DM1[1,]), exp(cip_limbs_DM1[1,]) 
+             )), 
+    ciu = 
+    unlist(c(
+      exp(cip_flaps_DM0[2,]), exp(cip_limbs_DM0[2,]), exp(cip_flaps_DM1[2,]),  exp(cip_limbs_DM1[2,]) 
+             )), 
+  
+  time = rep(time, 4),  group = c(
+    rep("flaps_DM0",100), rep("limbs_DM0",100),rep("flaps_DM1",100),  rep("limbs_DM1",100)
+  ))
+
+predict$group <- factor(predict$group, levels = c(
+  "flaps_DM0","limbs_DM0","flaps_DM1","limbs_DM1") )
+
+cole <- c("#01AF40", "#0000FF","#FF0000",
+          "#FF00FF")
+
+vessel_long <- vessel_long %>% 
+  mutate(group = fct_recode(group,
+                    'flaps_DM0' = 'DM0.flaps',
+                    'limbs_DM0' = 'DM0.limbs',
+                    'flaps_DM1' = 'DM1.flaps',
+                    'limbs_DM1' = 'DM1.limbs'
+                    ))
+
+fig_03c <- ggplot() +
+  geom_point(data = vessel_long, 
+            aes(x = time_days, y = vessel_index, group = Site_nest), 
+            alpha = 0.8, color = 'grey70') +
+  
+  geom_line(data = predict, aes(x = time, 
+                                y = prediction, 
+                                group = group,
+                                color = group), size=1.05) +
+  
+  geom_ribbon(data = predict, 
+              aes(x = time, ymin = cil, ymax = ciu, fill = group), 
+              alpha = 0.25, color = NA) +
+  
+  scale_color_manual(values = cole) +
+  scale_fill_manual(values = cole) +
+  labs(x = "Days of experiment", y = 'Vessel index') +
+  facet_wrap(~group, ncol = 4,  
+             labeller = labeller(group = c("flaps_DM0" = "Non-DM, flaps",
+                                           "limbs_DM0" = "Non-DM, limbs",
+                                           "flaps_DM1" = "Diabetic, flaps",
+                                           "limbs_DM1" = "Diabetic, limbs"))) +
+  scale_x_continuous(breaks=c(7, 14, 28)) +
+  guides(color = guide_legend(override.aes = list(size = 4.6, linewidth=1), nrow=1)) +
+  theme(legend.position= 'no')
+# ,
+#         legend.key.size = unit(0.7, 'cm'),
+#         legend.title = element_text(size=11),
+#         legend.text = element_text(size=10))
+
+fig_03c
+```
+
+# Findings description
+
+## TcPO2
+
+Figure 1A shows TcPO2 trajectories in individual wounds over time. Wounds in non-diabetic animals on
+flaps maintained low TcPO2 levels throughout the whole experiment, whereas TcPO2 was markedly
+increasing in limbs. Initially, TcPO2 levels in control wounds differed markedly from those in
+occluded wounds, but limb wounds gradually matched control levels, unlike flap wounds, which
+remained distinct through day 28 (Fig. 1B) particularly in non-diabetic animals.
+
+The results from the Bayesian hierarchical generalized linear model corroborate these findings (Fig.
+1B, Table 1, Suppl. Fig. 2, Suppl. Table 1). The model highlights a significant effect of wound
+location, demonstrating that limb wounds exhibit a 2.6-fold higher TcPO2 value compared to flap
+wounds on day 28. Specifically, for non-diabetic and diabetic subgroups, the final TcPO2 values were
+approximately 2.4-fold and 2.8-fold greater in limb wounds, respectively (Table 1). The model
+estimates a 98.6% probability that limb location results in enhanced TcPO2 levels by day 28. The
+model found no reliable evidence of diabetes affecting TcPO2 levels (Table 1, Suppl. Fig. 2).
+
+In conclusion, limb wounds seems linked to higher TcPO2 levels a month after wound formation,
+indicating better healing process for limb wounds.
+
+### Figure 1
+
+```{r, fig.height=9, fig.width=6}
+#| fig.cap: "Figure 1. Time trajectories of TcPO2 from the day of wound formation (D0) to the final measurement (D28), with color defining treatment group. (A) Change of TcPO2 across individual wounds. Control (grey lines) show TcPO2 in non-occluded wounds.  (B) Model-based estiamtes of TcPO2 over the time. Wide colored lines show median posterior fit, polygons show 95% credible intervals. Grey lines show TcPO2 trajectories across individuals wounds. The estimation was based on Bayesian hierarchical generalized linear model with Gamma likelihood (see methods for details)."
+
+fig_01c <- fig_01c + theme(legend.position = "none")
+plot_grid(fig_01b, fig_01c, ncol=1, rel_heights = c(2.7, 1), labels=c("A", "B"))
+```
+
+### Table 1
+
+```{r, collapse=TRUE}
+table_01
+
+```
+
+### Supplementary figure 2
+
+```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
+#| fig.cap: "Supplementary Figure 2: Estimated effects of wound site and diabetes on TcPO2, with 95 (thick line) and 99% (slim line) credible intervals, separately for the starting (left, D0), and final (middle, D28) days of the experiment, and for 1-week change (right).  Upper part (blue) shows effect of limb site either in non-diabetic (DM0) or diabetic (DM1) subgroups and averaged effect (whole posterior distribution is shown for averaged effect). Bottom part (red) shows the effect of diabetes either in flap wound site or limb wound sites subgroups, and averaged (whole posterior distribution). PD indicates probability of direction as defined in methods, with higher value indicating higher evidence for the effect"
+suppl_fig_01()
+```
+
+### Supplementary table 1
+
+```{r, collapse=TRUE}
+suppl_table_01
+```
+
+## Wound area
+
+Wound area declined over time (D0 to D14 post-wound formation) in all groups. Control (unoccluded)
+wounds showed results comparable to the experimental wounds (Fig. 2A). Diabetic wounds exhibited
+surprisingly steeper declining trends, indicating higher healing velocity (Fig. 2A).
+
+The Bayesian model supports this observation (Fig. 2B, Table 2, Suppl. Fig. 3). Healing velocity ---
+defined as the weekly rate of wound area reduction --- showed a notable difference between groups.
+The rate of change per week was -74 mm^2^ in non-diabetic pigs and -158 mm^2^ in diabetic pigs,
+leading to a difference of 84 mm^2^ per week in healing velocity rate between the diabetic and
+non-diabetic pigs (95% CI: 23 to 144; Suppl. Table 2). Within the subgroups, diabetic pigs exhibited
+a greater healing velocity by 69 mm^2^ per week in flap wounds (CI: 1 to 138) and 99 mm^2^ per week
+in limb wounds (-3 to 199) compared to their non-diabetic counterparts (Table 2, Suppl. Fig. 3).
+Remarkably, the model suggests a 99.7% probability that diabetes enhances healing velocity, i.e.
+fasten wound closure over time.
+
+For limb wounds, the initially larger wound area in diabetic pigs complicates the interpretation of
+results (Fig. 2C, Table 2). However, flap wounds started with similar sizes across both groups, yet
+data suggest diabetes still promotes quicker healing in diabetic flap wounds, with a 97.6%
+model-estimated probability of faster wound closure (Table 2).
+
+Although these results seem relatively robust, sensitivity analysis advises caution (Suppl. Tables 3
+and 4). A complex model incorporating a random slope yielded a smaller model-based probability of
+93.2% for diabetes facilitating faster healing (Suppl. Table 3), suggesting uncertainty.
+
+#### Figure 2
+
+```{r, collapse=TRUE, fig.height=9, fig.width=6}
+#| fig.cap: "Figure 2. Wound area over the course of the experiment, from the day of wound formation (D0) to the final measurement (D14), with color defining treatment group. (A) Change of wound area across individual wounds. Control (grey lines) show the wound area in non-occluded wounds.  (B) Model-based estimates of the wound area over the time. Wide colored lines show median posterior fit, polygons show 95% credible intervals. Grey lines show change in wound area per individual wound. The estimation was based on Bayesian hierarchical robust model (see methods for details). "
+
+fig_02c <- fig_02c + theme(legend.position = "none")
+plot_grid(fig_02b, fig_02c, ncol=1, rel_heights = c(2.7, 1), labels=c("A", "B"))
+```
+
+#### Table 2
+
+```{r, collapse=TRUE}
+table_02
+```
+
+#### Supplementary figure 3
+
+```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
+#| fig.cap: "Supplementary Figure 3. Effects of wound site and diabetes on wound area, with 95 (thick line) and 99% (slim line) credible intervals, separately for the starting (left), and last (14 post wound creation, middle) days of experiment, and for 1-week change (right, relfecting healing velocity).  Upper part (blue) shows the effect of limb wound location either in non-diabetic (DM0) or diabetic (DM1) subgroups and averaged effect (whole posterior distribution is shown for averaged effect), compared to flaps location. Bottom part (red) shows the effect of diabetes either in flap wound site or limb wound sites subgroups, and averaged (whole posterior distribution). PD indicates probability of direction as defined in method, with higher value indicating higher evidence for the effect"
+
+suppl_fig_02()
+```
+
+#### Supplementary table 2
+
+```{r, collapse=TRUE}
+suppl_table_02
+```
+
+#### Supplementary table 3
+
+```{r, collapse=TRUE}
+suppl_table_03
+```
+
+#### Supplementary table 4
+
+```{r, collapse=TRUE}
+suppl_table_04
+```
+
+## Vessel index
+
+Data suggest different trends in the vessel index over time, with an increasing trend for wounds on
+limbs of non-diabetic pigs and a decline in flaps. However, this may be influenced by differing
+initial values (Fig. 3). Given that the data are not longitudinal (measured once per wound) and
+initial values vary significantly across groups (Fig. 3), interpreting the results is challenging.
+Congruently, the Bayesian model shows a large uncertainty in estimates and does not indicate any
+reliable difference between groups (Table 3, Suppl. Table 5).
+
+### Figure 3
+
+```{r, collapse=TRUE, fig.height=4, fig.width=6}
+#| fig.cap: "Figure 3. Data of vessel index in relation to the time of biopsy. Points are measurements from individual wounds, lines show model-based estiamtes of vessel index according to time of biopsy. Polygons show 95% credible intervals. The estimation was based on Bayesian hierarchical linear model Gamma distribution (see methods for details)."
+
+fig_03c
+```
+
+### Table 3
+
+```{r, collapse=TRUE}
+table_03
+```
+
+### Suppl. Table 5
+
+```{r, collapse=TRUE}
+suppl_table_05
+```
+
+### Conclusion
+
+TcPO2 appears to be restored faster in limb wounds compared to flaps, while, surprisingly, healing
+velocity is better in diabetic animals, potentially due to insulin treatment and the short duration
+of diabetes. Analysis of the vessel index does not provide robust evidence for the effect of
+diabetes or wound location.
+
+Generally, flap wounds in non-diabetic animals exhibited the worst endpoint values across the three
+outcomes, suggesting this group may serve as the most suitable model for chronic diabetic wounds.
+Inducing of diabetes does not appear to reinforce chronicity of the wound in our pig models.
+
+Given the small sample size, caution in interpretation is warranted. However, our publicly available
+data invite future Bayesian updating and meta-analysis, contributing to a deeper understanding of
+wound healing mechanisms and potential interventions.
+
+# Software versions
+
+```{r, collapse=TRUE}
+sessionInfo()
+```
