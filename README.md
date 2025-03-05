@@ -1,9 +1,9 @@
 
-# Searching for a suitable in vivo model of chronic ischemic tissue
+# Novel in vivo porcine models of chronic ischemic tissue
 
 ## Statistical Report
 
-Statistical report and code for the study *Searching for a suitable in vivo model of chronic ischemic tissue*, that has been *under review* in the [TO BE ADDED]
+Statistical report and code for the study *Novel in vivo porcine models of chronic ischemic tissue* that has been submitted to *Microvascular Research*.
 
 
 This page shows an [HTML report](https://filip-tichanek.github.io/wound_pig) (with code outputs and data summaries) 
