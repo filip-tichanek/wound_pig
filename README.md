@@ -9,8 +9,3 @@ This is statistical report of the study [Novel in vivo porcine models of chronic
 
 
 Statistical R code is available in the [HTML report](https://filip-tichanek.github.io/wound_pig/)
-<br>
-
-Original GitHub repository: <https://github.com/filip-tichanek/wound_pig>
-
-<br>
