@@ -30,9 +30,10 @@ code-block-bg: "#2D2D31"
 fontcolor: "#F5F5F5"
 monobackgroundcolor: "#3B3B3B"
 bibliography: references.bib
+csl: elsevier-with-titles.csl
 ---
 
-----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ```{r, collapse=TRUE, echo=FALSE, output=FALSE}
 getwd()
@@ -65,44 +66,28 @@ body {
 
 ```
 
-----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 **Authors' affiliations**:
 
-[Veronika Frelichova^1,2^, Robert Bem^3^, Jaroslav Chlupac^1,5^, Michal Dubsky^3,4^, Jitka
-Husakova^3,4^, Andrea Nemcova^3^, Ludek Voska^5^, Zuzana Simunkova^6^, Filip
-Tichanek^7^, Jiri Fronek^1,4,8^]{style="font-size: larger;"}
+[Veronika Frelichova^1,2^, Robert Bem^3^, Jaroslav Chlupac^1,5^, Michal Dubsky^3,4^, Jitka Husakova^3,4^, Andrea Nemcova^3^, Ludek Voska^5^, Zuzana Simunkova^6^, Filip Tichanek^7^, Jiri Fronek^1,4,8^]{style="font-size: larger;"}
 
-^1^Transplant Surgery Department, Institute for Clinical and Experimental Medicine, Prague, Czech
-Republic. ^2^Second Faculty of Medicine, Charles University, Prague, Czech Republic. ^3^Diabetic
-Center, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^4^First Faculty
-of Medicine, Charles University, Prague, Czech Republic. ^5^Clinical and Transplant Pathology
-Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^6^Experimental
-Medicine Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic.
-^7^Department of Data Science, Institute for Clinical and Experimental Medicine, IKEM, Prague, Czech
-Republic. ^8^Department of Anatomy, Second Faculty of Medicine, Charles University, Prague, Czech
-Republic.
+^1^Transplant Surgery Department, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^2^Second Faculty of Medicine, Charles University, Prague, Czech Republic. ^3^Diabetic Center, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^4^First Faculty of Medicine, Charles University, Prague, Czech Republic. ^5^Clinical and Transplant Pathology Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^6^Experimental Medicine Centre, Institute for Clinical and Experimental Medicine, Prague, Czech Republic. ^7^Department of Data Science, Institute for Clinical and Experimental Medicine, IKEM, Prague, Czech Republic. ^8^Department of Anatomy, Second Faculty of Medicine, Charles University, Prague, Czech Republic.
 
-----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 **Person taking responsibility for the data analysis and code**:
 
 Filip Tichanek (f.tichanek@gmail.com)
 
-----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
-This is statistical report of the study that has been *submitted* to the [Microvascular Research](https://www.sciencedirect.com/journal/microvascular-research)
-
-**Original publication**
-
-This is statistical report of for the \[TO BE ADDED\] published in the \[TO BE ADDED\]
-
-<br>
+This is statistical report of the study [Novel in vivo porcine models of chronic ischemic tissue](https://doi.org/10.1016/j.mvr.2025.10484) that has been published the *Microvascular Research* [@frelichova2025].
 
 [When using this code, cite original publication:]{style="font-size: larger;"}
 
 ::: {style="background-color: #2D2D31; padding: 10px; margin: 10px 0; border-left: 3px solid #ccc;"}
-TO BE ADDED
+V. Frelichova, R. Bem, J. Chlupac, M. Dubsky, J. Husakova, A. Nemcova, L. Voska, Z. Simunkova, F. Tichanek, J. Fronek, Novel in vivo porcine models of chronic ischemic tissue, Microvascular Research 161 (2025) 104845. https://doi.org/10.1016/j.mvr.2025.104845.
 :::
 
 <br>
@@ -111,7 +96,7 @@ Original GitHub repository: <https://github.com/filip-tichanek/wound_pig>
 
 <br>
 
-----------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ```{css, echo=FALSE}
 code.sourceCode {
@@ -138,56 +123,32 @@ body {
 
 # Introduction
 
-Diabetes mellitus (DM) is associated with serious complications, such as diabetic foot ulcers
-(DFUs), wounds characterized by impaired healing. Peripheral artery disease (PAD), a major
-complication of DM, exacerbates the risk and severity of DFUs due to impaired tissue perfusion and
-local hypoxia, often leading to amputation. To address the urgent need for new treatments, our study
-focused on developing an *in vivo* model of chronic ischemic tissue that closely mimics non-healing
-ulcers in diabetic patients.
+Diabetes mellitus (DM) is associated with serious complications, such as diabetic foot ulcers (DFUs), wounds characterized by impaired healing. Peripheral artery disease (PAD), a major complication of DM, exacerbates the risk and severity of DFUs due to impaired tissue perfusion and local hypoxia, often leading to amputation. To address the urgent need for new treatments, our study focused on developing an *in vivo* model of chronic ischemic tissue that closely mimics non-healing ulcers in diabetic patients.
 
-We introduced two models in diabetic and non-diabetic pigs, evaluating tissue oxygenation (`TcPO2`),
-wound healing rate (`wound area` change), and angiogenesis (`Vessel index`). We sought for model
-with characteristics indicating signs of chronicity, i.e. low and non-improving `TcPO2` levels,
-delayed or absent wound closure and persistently impaired vascularization of the wound.
+We introduced two models in diabetic and non-diabetic pigs, evaluating tissue oxygenation (`TcPO2`), wound healing rate (`wound area` change), and angiogenesis (`Vessel index`). We sought for model with characteristics indicating signs of chronicity, i.e. low and non-improving `TcPO2` levels, delayed or absent wound closure and persistently impaired vascularization of the wound.
 
 ## Study design
 
-This study aimed to investigate the effects of ischemia on wound healing in both diabetic and
-non-diabetic pigs. Ischemic conditions were induced in limbs and through the creation of dorsal
-wounds, organizing the animals into four main groups based on their diabetic status and the
-localization of the wound:
+This study aimed to investigate the effects of ischemia on wound healing in both diabetic and non-diabetic pigs. Ischemic conditions were induced in limbs and through the creation of dorsal wounds, organizing the animals into four main groups based on their diabetic status and the localization of the wound:
 
 -   Limb wounds in non-diabetic pigs (`Non-DM, limbs`)
 -   Flap wounds in non-diabetic pigs (`Non-DM, flaps`)
 -   Limb wounds in diabetic pigs (`Diabetic, limbs`)
 -   Flap wounds in diabetic pigs (`Diabetic, flaps`)
 
-The experiment's core evaluations included measurement of tissue oxygen levels (`TcPO2`), analysis
-of wound healing reflected by changes in `wound area` (or `healing`), and histological examination
-for vascular changes through the `vessel index`. Except for the `vessel index`, these assessments
-were conducted at several time points post-intervention.
+The experiment's core evaluations included measurement of tissue oxygen levels (`TcPO2`), analysis of wound healing reflected by changes in `wound area` (or `healing`), and histological examination for vascular changes through the `vessel index`. Except for the `vessel index`, these assessments were conducted at several time points post-intervention.
 
-`TcPO2` (mmHg) was measured longitudinally: on the day of wound formation (`D0`), a week
-post-formation (`D7`), two weeks post-formation (`D14`), and a month after wound formation (`D28`).
+`TcPO2` (mmHg) was measured longitudinally: on the day of wound formation (`D0`), a week post-formation (`D7`), two weeks post-formation (`D14`), and a month after wound formation (`D28`).
 
 `Wound area` (mm^2^) was measured longitudinally on `D0`, `D7`, and `D14`.
 
-`Vessel index` measurement requires a biopsy and was thus measured once per wound on `D7` or `D14`
-or `D28`.
+`Vessel index` measurement requires a biopsy and was thus measured once per wound on `D7` or `D14` or `D28`.
 
 ## Statistical methods
 
-Due to the small sample size in our study, classical parametric statistics in a frequentist
-framework, which rely on large-sample approximations, were unsuitable. Thus, we opted for a Bayesian
-framework, which provides clear interpretations regardless of sample size [@mcelreath2020].
+Due to the small sample size in our study, classical parametric statistics in a frequentist framework, which rely on large-sample approximations, were unsuitable. Thus, we opted for a Bayesian framework, which provides clear interpretations regardless of sample size [@mcelreath2020].
 
-We utilized hierarchical Bayesian regression models with either a Student t-distribution ('robust'
-model) or Gamma likelihood (with a log-link) in R software [@Rcomp], version 4.3.1. These models
-were employed to analyze the impact of diabetes (absent \[`non-DM`\] or present \[`diabetic`\]),
-wound site (on \[`flaps`\] or \[`limbs`\]), and their interaction (all predictors fitted via a
-single summary variable `group`) on specified outcomes or their change over time. The models were
-fitted using the 'brms' package [@brms; @brmsadv], which employs 'Stan' software for probabilistic
-computing [@stan].
+We utilized hierarchical Bayesian regression models with either a Student t-distribution ('robust' model) or Gamma likelihood (with a log-link) in R software [@Rcomp], version 4.3.1. These models were employed to analyze the impact of diabetes (absent \[`non-DM`\] or present \[`diabetic`\]), wound site (on \[`flaps`\] or \[`limbs`\]), and their interaction (all predictors fitted via a single summary variable `group`) on specified outcomes or their change over time. The models were fitted using the 'brms' package [@brms; @brmsadv], which employs 'Stan' software for probabilistic computing [@stan].
 
 There were three outcomes to be analyzed:
 
@@ -197,46 +158,23 @@ There were three outcomes to be analyzed:
 
 -   \(iii\) `Vessel index`, reflecting tissue vascularization
 
-To address data dependency, both the `TcPO2` and `wound area` models incorporated hierarchical
-random effects. The random-effect factor for the wound was nested within the subject's random
-effect. Given the low sample size, we primarily utilized a random intercept only. However, due to
-the presence of individual-specific trends in `wound area`, we also applied a more complex model
-with both random intercept and slope as secondary analysis.
+To address data dependency, both the `TcPO2` and `wound area` models incorporated hierarchical random effects. The random-effect factor for the wound was nested within the subject's random effect. Given the low sample size, we primarily utilized a random intercept only. However, due to the presence of individual-specific trends in `wound area`, we also applied a more complex model with both random intercept and slope as secondary analysis.
 
-Since the `vessel index` was measured only once per wound, this particular model included a simple
-random intercept for the subject.
+Since the `vessel index` was measured only once per wound, this particular model included a simple random intercept for the subject.
 
-The choice of likelihood distribution was guided by prior exploratory data analysis (EDA). Since
-`TcPO2` and `vessel index` exhibited a right-tailed distribution with larger errors for larger
-predictions, a Gamma distribution with a log-link was chosen. Conversely, `wound area` did not
-demonstrate such characteristics, prompting us to model it using robust regression (Student
-t-distribution). These models were subsequently checked using a *posterior predictive check* (PPC)
-[@mcelreath2020; @gelman2013].
+The choice of likelihood distribution was guided by prior exploratory data analysis (EDA). Since `TcPO2` and `vessel index` exhibited a right-tailed distribution with larger errors for larger predictions, a Gamma distribution with a log-link was chosen. Conversely, `wound area` did not demonstrate such characteristics, prompting us to model it using robust regression (Student t-distribution). These models were subsequently checked using a *posterior predictive check* (PPC) [@mcelreath2020; @gelman2013].
 
-To ensure all models fit the data well and met distributional assumptions, we conducted the PPC for
-each model. Additionally, we examined Pareto k values to detect overly influential or outlying data
-points [@loo]. To compare the predictive accuracy of different models, we employed leave-one-out
-cross-validation (LOO-CV) [@vehtari2016].
+To ensure all models fit the data well and met distributional assumptions, we conducted the PPC for each model. Additionally, we examined Pareto k values to detect overly influential or outlying data points [@loo]. To compare the predictive accuracy of different models, we employed leave-one-out cross-validation (LOO-CV) [@vehtari2016].
 
-Conservative priors centered at zero effect were generally used for the `group` and `group:time`
-interaction effects. Priors were Gaussian, with $mu = 0$ and $sigma = 2$ (for robust model of
-`wound area`, $sigma = 2*SD$ where $SD$ being standard deviation of `wound area`) for the effect
-`group`. `Time` was scaled to the unit of weeks. For the `time:group` interaction, $sigma = 1$ was
-used (1 standard deviation of the `wound area` for robust model respectively).
+Conservative priors centered at zero effect were generally used for the `group` and `group:time` interaction effects. Priors were Gaussian, with $mu = 0$ and $sigma = 2$ (for robust model of `wound area`, $sigma = 2*SD$ where $SD$ being standard deviation of `wound area`) for the effect `group`. `Time` was scaled to the unit of weeks. For the `time:group` interaction, $sigma = 1$ was used (1 standard deviation of the `wound area` for robust model respectively).
 
-For the effect of time, we assumed that `TcPO2` should increase over time, reflecting healing.
-Similarly, according to Roy et al. [@roy2008], the wound area should decrease by at least 20% per 14
-days, i.e., approximately by 50 mm^2^ per week in the context of our data. This assumption was
-reflected in the prior distribution for the `time` effect, with:
+For the effect of time, we assumed that `TcPO2` should increase over time, reflecting healing. Similarly, according to Roy et al. [@roy2008], the wound area should decrease by at least 20% per 14 days, i.e., approximately by 50 mm^2^ per week in the context of our data. This assumption was reflected in the prior distribution for the `time` effect, with:
 
 -   $normal (mu = 0.1, sigma = 2)$ for Gamma models
 
--   $normal (mu = -50, sigma = 350)$ for the robust model (350 = 2 standard deviations of the
-    `wound area`)
+-   $normal (mu = -50, sigma = 350)$ for the robust model (350 = 2 standard deviations of the `wound area`)
 
-To report the uncertainty of the effect estimation, we show 95% credible intervals and the
-*probability of direction* (`PD`), which can be interpreted as an index (0.5 to 1) representing the
-certainty that the effect goes in a specific direction [@makowski2019].
+To report the uncertainty of the effect estimation, we show 95% credible intervals and the *probability of direction* (`PD`), which can be interpreted as an index (0.5 to 1) representing the certainty that the effect goes in a specific direction [@makowski2019].
 
 # Analysis
 
@@ -290,8 +228,7 @@ if (T) {
 
 #### `run_model`
 
-The function to (i) load OR (ii) run & save (if has not been done previously) results of any
-computation or complex table production
+The function to (i) load OR (ii) run & save (if has not been done previously) results of any computation or complex table production
 
 ```{r}
 run_model <- function(expr, path, reuse = TRUE) {
@@ -325,11 +262,7 @@ run_model <- function(expr, path, reuse = TRUE) {
 
 #### `p_dir`
 
-The function calculates proportion of posterior probability behind specified threshold or
-probability of direction (as defined in [Makowski et al.,
-2019](https://doi.org/10.3389/fpsyg.2019.02767) [@makowski2019]). `data`: data frame containing
-posterior draws in columns. `dir`: probability under/above threshold (`>` or `<`) or probability of
-direction (`max`). `threshold`: often null effect
+The function calculates proportion of posterior probability behind specified threshold or probability of direction (as defined in [Makowski et al., 2019](https://doi.org/10.3389/fpsyg.2019.02767) [@makowski2019]). `data`: data frame containing posterior draws in columns. `dir`: probability under/above threshold (`>` or `<`) or probability of direction (`max`). `threshold`: often null effect
 
 ```{r, collapse=TRUE}
 
@@ -352,9 +285,7 @@ direction (`max`). `threshold`: often null effect
 
 #### `cur`
 
-The function creates polygon or curve given the data frame of posterior samples (`post`), specific
-column given (`var`), position on X axis (`con`), filling color (`cole`) and color of border of the
-polygon (`borde`). The last two arguments have defaults.
+The function creates polygon or curve given the data frame of posterior samples (`post`), specific column given (`var`), position on X axis (`con`), filling color (`cole`) and color of border of the polygon (`borde`). The last two arguments have defaults.
 
 ```{r}
     cur <- function(post, var, con, cole, borde){
@@ -367,9 +298,7 @@ polygon (`borde`). The last two arguments have defaults.
 
 #### `ci`
 
-The function draws credible intervals (95% in wide line and 99% as slimmer line), given the data
-frame of posterior samples (`post`), specified column (`var`), position on X axis (`con`), and color
-`cole`. It also automatically generates white line on the same Y-axis as is the placement of the CI
+The function draws credible intervals (95% in wide line and 99% as slimmer line), given the data frame of posterior samples (`post`), specified column (`var`), position on X axis (`con`), and color `cole`. It also automatically generates white line on the same Y-axis as is the placement of the CI
 
 ```{r}
    ci <- function(post, var, con, cole, xsc){
@@ -424,10 +353,7 @@ summary(dat)
 
 ### Wrangle data
 
-In the next step, we will modify data as needed for exploration and modelling. Note that we also
-create a variable `TcPO0_nz` where we replace zero values with 0.5. This is to address zeros that
-arise from detection limits, not actual absence, "true zero". This enables fitting Gamma models that
-do not allow occurrence of zeros.
+In the next step, we will modify data as needed for exploration and modelling. Note that we also create a variable `TcPO0_nz` where we replace zero values with 0.5. This is to address zeros that arise from detection limits, not actual absence, "true zero". This enables fitting Gamma models that do not allow occurrence of zeros.
 
 #### TcPO2
 
@@ -513,8 +439,7 @@ hist((vessel_long$vessel_index), 14, main = 'vessel index', xlab='')
 
 #### All subjects per plot
 
-Each plot include individuals from the same group (defined by presence of diabetes and location of
-wound)
+Each plot include individuals from the same group (defined by presence of diabetes and location of wound)
 
 ```{r, collapse=TRUE, fig.height=4, fig.width=7}
 #| fig.cap: "Figure: Change in local oxygen measured via transcutaneous oximetry (TcPO2) over time and across 4 groups. Each line shows time trajectory of individual wound, with color defining the same individual"
@@ -576,8 +501,7 @@ fig_01b
 
 #### All subjects per plot
 
-Each plot include individuals from the same group (defined by presence of diabetes and location of
-wound)
+Each plot include individuals from the same group (defined by presence of diabetes and location of wound)
 
 ```{r, collapse=TRUE, fig.height=4, fig.width=7}
 #| fig.cap: "Figure: Change in wound area over time and across 4 groups: wounds on flaps of pigs without diabetes (Non-DM, flaps), wound on limbs of non-diabetic pigs (non-DM, limbs), wound on flaps of diabetic pigs (diabetic, flaps) and limb wound in diabetic pigs (diabetic, limbs). Each line shows time trajectory of individual wound, with color defining the same individual"
@@ -639,8 +563,7 @@ fig_02b
 
 Note that there is only a single measurement per wound for the vessel index
 
-Each plot include individuals from the same group (defined by presence of diabetes and location of
-wound). Individuals are distinguishable by color.
+Each plot include individuals from the same group (defined by presence of diabetes and location of wound). Individuals are distinguishable by color.
 
 ```{r, fig.height=4, fig.width=7}
 #| fig.cap: "Relationship between vessel index and time of measurement from the wound formation, showed separately for each group. Each point shows observation of individual wound, with color defining the same individual"
@@ -695,15 +618,11 @@ fig_03a
 
 ### TcPO2 model
 
-Because TcPO2 is only-positive variable with heavy right tail (Supplementary Figure 1), we will
-primarily model it via hierarchical generalized linear model with Gamma distribution and log-link.
+Because TcPO2 is only-positive variable with heavy right tail (Supplementary Figure 1), we will primarily model it via hierarchical generalized linear model with Gamma distribution and log-link.
 
 #### Priors
 
-We did not find any data about development of TcPO2 over time in similar pig model. However, we
-still expect the TcPO2 will be at least slightly improving over time. Thus, the prior will reflect
-the expectation of increasing the TcPO2 1.1 times per a week, thereby setting the center of prior
-for the time effect slightly
+We did not find any data about development of TcPO2 over time in similar pig model. However, we still expect the TcPO2 will be at least slightly improving over time. Thus, the prior will reflect the expectation of increasing the TcPO2 1.1 times per a week, thereby setting the center of prior for the time effect slightly
 
 ```{r, collapse=TRUE}
 log(1.1)
@@ -724,13 +643,11 @@ prior1 <- prior(normal(0, 2), class= b, coef = 'groupDM0.limbs') +
 
 #### Model fit
 
-Next, we will fit the model and also evaluate model convergence and effective size of posterior
-samples (*ESS*). We will use following parameters:
+Next, we will fit the model and also evaluate model convergence and effective size of posterior samples (*ESS*). We will use following parameters:
 
 (i) `Rhat` from model summary: 1 indicates convergence
 
-(ii) `Bulk_ESS` and `Tail_ESS` from summary output: should be \> 1000-2000, ideally more for effects
-     of interest
+(ii) `Bulk_ESS` and `Tail_ESS` from summary output: should be \> 1000-2000, ideally more for effects of interest
 
 ```{r, collapse=TRUE}
 tcpo_model_int <- run_model(
@@ -769,12 +686,7 @@ These plots show how well model reproduce (predict, or *retrodict*) data
 
 We will show following plot:
 
-(i) *data density* plot: the figure shows density of the outcome variable (thick line) and densities
-    of artificial data from simulations based on Bayesian model estimates (slimmer lines). The thick
-    line should not deviate much from the slimmer lines (in that case, model does not recapitulate
-    data well). We will show specifically grouped data density which is the same but for specific
-    group. This is also useful for evaluation potential group-specific shapes of data distribution
-    (e.g. different spread of outcome)
+(i) *data density* plot: the figure shows density of the outcome variable (thick line) and densities of artificial data from simulations based on Bayesian model estimates (slimmer lines). The thick line should not deviate much from the slimmer lines (in that case, model does not recapitulate data well). We will show specifically grouped data density which is the same but for specific group. This is also useful for evaluation potential group-specific shapes of data distribution (e.g. different spread of outcome)
 
 ```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE}
 pp_check(tcpo_model_int, type='dens_overlay_grouped',ndraws = 50,group='group') + xlim(0, 100)
@@ -782,28 +694,22 @@ pp_check(tcpo_model_int, type='dens_overlay_grouped',ndraws = 50,group='group') 
 
 It looks very fine here as thick line closely follows the slim lines.
 
-(ii) *scatter plot* shows average predictions (x-axis) vs. data. For Gaussian and robust
-     (t-distribution) models, increasing X-axis should not noticeably change the spread of data
-     points
+(ii) *scatter plot* shows average predictions (x-axis) vs. data. For Gaussian and robust (t-distribution) models, increasing X-axis should not noticeably change the spread of data points
 
 ```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE, message=FALSE}
 pp_check(tcpo_model_int, type='scatter_avg')
 ```
 
-As expected, spread increases with X axis. This would be problem if we had Gaussian model. As we
-have Gamma model, this behavior is expected,
+As expected, spread increases with X axis. This would be problem if we had Gaussian model. As we have Gamma model, this behavior is expected,
 
-(iii) *max - min* plot shows predicted vs. actual minimal and maximal value of outcome. Dark blue
-      point should be among the light-blue points
+(iii) *max - min* plot shows predicted vs. actual minimal and maximal value of outcome. Dark blue point should be among the light-blue points
 
 ```{r, collapse=TRUE, fig.height=6, fig.width=6}
 set.seed(16)
 pp_check(tcpo_model_int,type="stat_2d", stat = c("max", "min"),ndraws=200)
 ```
 
-This is not good here. Our minimal value is relatively large (this is likely product of our addition
-of to zero) and our maximal value is surprisingly small. TcPO2 thus seems to have upper bound,
-limiting its further increase.
+This is not good here. Our minimal value is relatively large (this is likely product of our addition of to zero) and our maximal value is surprisingly small. TcPO2 thus seems to have upper bound, limiting its further increase.
 
 (iv) *mean - standard deviation* plot shows predicted vs. actual mean and SD of the outcome
 
@@ -812,13 +718,9 @@ set.seed(16)
 pp_check(tcpo_model_int,type="stat_2d", stat = c("mean", "sd"),ndraws=200)
 ```
 
-This seems relatively fine: the model expects the *mean* and *standard deviation* of the TcPO2 not
-far away from the factual values.
+This seems relatively fine: the model expects the *mean* and *standard deviation* of the TcPO2 not far away from the factual values.
 
-(v) *LOO plots* answers the question 'are there too influential observations?' and show calibration
-    plot respectively. All *pareto* estimates should have k \< 0.7 (indicating no overly influential
-    observation) and points in the second plot should be close the line, indicating a good
-    calibration.
+(v) *LOO plots* answers the question 'are there too influential observations?' and show calibration plot respectively. All *pareto* estimates should have k \< 0.7 (indicating no overly influential observation) and points in the second plot should be close the line, indicating a good calibration.
 
 ```{r, collapse=TRUE, fig.height=6, fig.width=6, warning=FALSE, message=FALSE}
 plot(loo(tcpo_model_int))
@@ -826,26 +728,17 @@ pp_check(tcpo_model_int, type = "loo_pit")
 loo(tcpo_model_int)
 ```
 
-There are few influential observations as would be expected given small sample size. We have to keep
-in mind that model may be overconfident and the estimated uncertainty underestimated.
+There are few influential observations as would be expected given small sample size. We have to keep in mind that model may be overconfident and the estimated uncertainty underestimated.
 
 ### Wound area models
 
-The wound area, unlike the other two outcomes, displays a symmetrical distribution, suggesting its
-suitability for Gaussian approximation. However, due to the small sample size, a robust regression
-with a Student's t-distribution is recommended to mitigate the impact of outliers.
+The wound area, unlike the other two outcomes, displays a symmetrical distribution, suggesting its suitability for Gaussian approximation. However, due to the small sample size, a robust regression with a Student's t-distribution is recommended to mitigate the impact of outliers.
 
-Figure of changes in wound area over time (the section 2.2.3. above) shows considerable individual
-variation even within a single group, indicating the need for a more sophisticated model. For our
-secondary analysis, we will use a model with random both intercepts and slopes to accurately account
-for individual and temporal variations.
+Figure of changes in wound area over time (the section 2.2.3. above) shows considerable individual variation even within a single group, indicating the need for a more sophisticated model. For our secondary analysis, we will use a model with random both intercepts and slopes to accurately account for individual and temporal variations.
 
 #### Prior specification
 
-According to [Roy et
-al.](https://journals.physiology.org/doi/full/10.1152/physiolgenomics.90362.2008), the wound area
-should decrease by at least 20% per 14 days, i.e. approximately by 50 units per week in the context
-of our data. This will be addressed during the prior setting.
+According to [Roy et al.](https://journals.physiology.org/doi/full/10.1152/physiolgenomics.90362.2008), the wound area should decrease by at least 20% per 14 days, i.e. approximately by 50 units per week in the context of our data. This will be addressed during the prior setting.
 
 Data summary for prior specification
 
@@ -887,8 +780,7 @@ conditional_effects(healing_model_int, effects='time_cen:group')
 conditional_effects(healing_model_int, effects='group')
 ```
 
-Model converged well and shows sufficient ESS. The model suggests that wounds of diabetic pigs may
-have, surprisingly, faster wound closure. Very similar result are expected also from robust model
+Model converged well and shows sufficient ESS. The model suggests that wounds of diabetic pigs may have, surprisingly, faster wound closure. Very similar result are expected also from robust model
 
 #### Random intercept model - robust
 
@@ -911,9 +803,7 @@ conditional_effects(healing_model_int_robust, effects='time_cen:group')
 conditional_effects(healing_model_int_robust, effects='group')
 ```
 
-Again, model converged well and shows sufficient ESS. Results are very similar to Gaussian model as
-expected. Will more complex and presumably more conservative random-slope model replicate these
-findings?
+Again, model converged well and shows sufficient ESS. Results are very similar to Gaussian model as expected. Will more complex and presumably more conservative random-slope model replicate these findings?
 
 #### Random slope model
 
@@ -936,8 +826,7 @@ conditional_effects(healing_model_int_rslope, effects='time_cen:group')
 conditional_effects(healing_model_int_rslope, effects='group')
 ```
 
-Again, the model converged well and shows sufficient ESS. Findings are the same but estimated
-uncertainty is larger, as expected.
+Again, the model converged well and shows sufficient ESS. Findings are the same but estimated uncertainty is larger, as expected.
 
 #### Models diagnostic
 
@@ -950,8 +839,7 @@ plc<-pp_check(healing_model_int_rslope, type='dens_overlay_grouped', ndraws = 50
 plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
 ```
 
-The posterior predictive checks indicate good models' fits, as the simulated data from the models
-closely resemble the observed data.
+The posterior predictive checks indicate good models' fits, as the simulated data from the models closely resemble the observed data.
 
 *Scatter plot*: are errors of the models larger for higher prediction?
 
@@ -973,12 +861,7 @@ plc<-pp_check(healing_model_int_rslope, type="stat_2d", stat = c("max", "min"), 
 plot_grid(pla, plb, plc, labels= c("A", "B", "C"), ncol = 1, nrow = 3)
 ```
 
-While the models generally replicate the data well, a notable discrepancy arises with the prediction
-of lower minimum values compared to the actual dataset. Given that wound size is inherently
-non-negative, both Gaussian and robust regression models implicitly assume the possibility of
-negative outcomes, which does not align with our data characteristics. Despite this, the observed
-minimum values are not significantly higher than those predicted by the models, suggesting that the
-approximation remains reasonably accurate.
+While the models generally replicate the data well, a notable discrepancy arises with the prediction of lower minimum values compared to the actual dataset. Given that wound size is inherently non-negative, both Gaussian and robust regression models implicitly assume the possibility of negative outcomes, which does not align with our data characteristics. Despite this, the observed minimum values are not significantly higher than those predicted by the models, suggesting that the approximation remains reasonably accurate.
 
 *SD - mean* plot
 
@@ -1015,8 +898,7 @@ Robust model shows the best properties in terms of overly influential values.
 
 #### Models comparison
 
-There are some data points with Pareto \>0.7, except for robust model. Let to provide moment_match
-and compare the models
+There are some data points with Pareto \>0.7, except for robust model. Let to provide moment_match and compare the models
 
 ```{r, warning=FALSE, message=FALSE}
 healing_model_int <- add_criterion(healing_model_int, 
@@ -1034,16 +916,11 @@ healing_model_int_rslope <- add_criterion(healing_model_int_rslope,
 loo_compare(healing_model_int, healing_model_int_robust, healing_model_int_rslope)
 ```
 
-Although a random slope model offers some improvement in prediction accuracy, the enhancement is
-modest. Given the complexity of the random slope model and our dataset's limited size (three
-observations per group), a simpler robust regression with a random intercept approach is preferred.
-This strategy acknowledges the potential underestimation of uncertainty, especially in
-group-specific slopes, but balances model complexity against our dataset's constraints.
+Although a random slope model offers some improvement in prediction accuracy, the enhancement is modest. Given the complexity of the random slope model and our dataset's limited size (three observations per group), a simpler robust regression with a random intercept approach is preferred. This strategy acknowledges the potential underestimation of uncertainty, especially in group-specific slopes, but balances model complexity against our dataset's constraints.
 
 ### Vessel index model
 
-As the vessel index also shows right-tailed distribution, generalized linear model with gamma
-distribution and log-link will be primarily used.
+As the vessel index also shows right-tailed distribution, generalized linear model with gamma distribution and log-link will be primarily used.
 
 #### Model fit
 
@@ -1063,11 +940,7 @@ conditional_effects(vessel_model_int_gamma, effects='time_cen:group')
 conditional_effects(vessel_model_int_gamma, effects='group')
 ```
 
-The model demonstrated good convergence and sufficient effective sample sizes (ESS), indicating
-reliable estimates. However, the vessel index variable presents challenges, primarily due to the
-lack of longitudinal data for most animals, resulting in significantly increased uncertainty in the
-estimates. Notably, the largest discrepancies are observed in the initial measurement. This
-considerable uncertainty makes it impossible to draw any conclusion from these results.
+The model demonstrated good convergence and sufficient effective sample sizes (ESS), indicating reliable estimates. However, the vessel index variable presents challenges, primarily due to the lack of longitudinal data for most animals, resulting in significantly increased uncertainty in the estimates. Notably, the largest discrepancies are observed in the initial measurement. This considerable uncertainty makes it impossible to draw any conclusion from these results.
 
 #### Posterior predictive check
 
@@ -1085,24 +958,19 @@ As above, PPC seems fine but with some overly influential values.
 
 ## Results presentation
 
-Model-based estimates and their uncertainty will be presented in the form of **two figures** and
-**two tables** per each of selected models (4 models are presented in total - one per outcome and
-additional random slope model for the `wound area`).
+Model-based estimates and their uncertainty will be presented in the form of **two figures** and **two tables** per each of selected models (4 models are presented in total - one per outcome and additional random slope model for the `wound area`).
 
 <br>
 
 **Figures**
 
-***A***) Visualizes the posterior distributions for differences between groups across three distinct
-measures:
+***A***) Visualizes the posterior distributions for differences between groups across three distinct measures:
 
 -   At the first measurement
 -   At the final measurement
--   Based on the rate of change, highlighting how rapidly outcomes change in one group relative to
-    another.
+-   Based on the rate of change, highlighting how rapidly outcomes change in one group relative to another.
 
-The posterior distributions will be presented to compare the following groups, arranged in the
-specified sequence (from top to bottom):
+The posterior distributions will be presented to compare the following groups, arranged in the specified sequence (from top to bottom):
 
 -   Diabetes vs. non-DM in limbs
 -   Diabetes vs. non-DM in flaps
@@ -1120,12 +988,9 @@ specified sequence (from top to bottom):
 
 **Tables**
 
-Tables show estimates, 95% credible intervals (*95% CI*) and the probability of direction (*PD*)
-which is an index (0.5 to 1) representing the certainty that the effect goes in a particular
-direction, as described in [Makowski et al., 2019](https://doi.org/10.3389/fpsyg.2019.02767)
+Tables show estimates, 95% credible intervals (*95% CI*) and the probability of direction (*PD*) which is an index (0.5 to 1) representing the certainty that the effect goes in a particular direction, as described in [Makowski et al., 2019](https://doi.org/10.3389/fpsyg.2019.02767)
 
-***A***) shows prediction of outcome separately for each of the 4 groups (see above) in terms of the
-following estimates:
+***A***) shows prediction of outcome separately for each of the 4 groups (see above) in terms of the following estimates:
 
 -   at the 1st measurement
 -   at the final measurement
@@ -1233,10 +1098,7 @@ post_fix_tcpo$sitedif_slope <-  rowMeans(
 
 #### Posterior distributions of between-groups difference, `SupplFig2`
 
-Following plot show posterior distribution for **difference between the groups** in terms of
-starting value, value at the end of the experiment and difference between predicted 1-week changes
-of the value. As the estimation was done with Gamma model with log link, the effects are shown in
-log-ratios, i.e. zero indicates null effect.
+Following plot show posterior distribution for **difference between the groups** in terms of starting value, value at the end of the experiment and difference between predicted 1-week changes of the value. As the estimation was done with Gamma model with log link, the effects are shown in log-ratios, i.e. zero indicates null effect.
 
 ```{r, collapse=TRUE, fig.width=8.8, fig.height=5}
 #| fig.cap: "Figure: Effects of wound site and diabetes on TcPO2 value with 95 (thick line) and 99% (slim line) credible intervals, separately for the starting (left), and final (middle) days of the experiment, and for 1-week change (right).  Upper part (blue) shows effect of limb site either in non-diabetic (non-DM) or diabetic subgroups and averaged effect (whole posterior distribution). Bottom part (red) shows the effect of diabetes either in flap wound site or limb wound sites, and averaged (whole posterior distribution). PD indicates probability of direction as defined in method, with higher value indicating higher evidence for the statistical clarity of the effect"
@@ -3192,8 +3054,7 @@ text(min(xsc) + 0.8*xscal,
 suppl_fig_03()
 ```
 
-The figure does not suggest any reliable between-group difference in terms of final values of vessel
-index or rate of change.
+The figure does not suggest any reliable between-group difference in terms of final values of vessel index or rate of change.
 
 #### Vessel index-related tables
 
@@ -3510,22 +3371,11 @@ fig_03c
 
 ## TcPO2
 
-Figure 1A shows TcPO2 trajectories in individual wounds over time. Wounds in non-diabetic animals on
-flaps maintained low TcPO2 levels throughout the whole experiment, whereas TcPO2 was markedly
-increasing in limbs. Initially, TcPO2 levels in control wounds differed markedly from those in
-occluded wounds, but limb wounds gradually matched control levels, unlike flap wounds, which
-remained distinct through day 28 (Fig. 1B) particularly in non-diabetic animals.
+Figure 1A shows TcPO2 trajectories in individual wounds over time. Wounds in non-diabetic animals on flaps maintained low TcPO2 levels throughout the whole experiment, whereas TcPO2 was markedly increasing in limbs. Initially, TcPO2 levels in control wounds differed markedly from those in occluded wounds, but limb wounds gradually matched control levels, unlike flap wounds, which remained distinct through day 28 (Fig. 1B) particularly in non-diabetic animals.
 
-The results from the Bayesian hierarchical generalized linear model corroborate these findings (Fig.
-1B, Table 1, Suppl. Fig. 2, Suppl. Table 1). The model highlights a significant effect of wound
-location, demonstrating that limb wounds exhibit a 2.6-fold higher TcPO2 value compared to flap
-wounds on day 28. Specifically, for non-diabetic and diabetic subgroups, the final TcPO2 values were
-approximately 2.4-fold and 2.8-fold greater in limb wounds, respectively (Table 1). The model
-estimates a 98.6% probability that limb location results in enhanced TcPO2 levels by day 28. The
-model found no reliable evidence of diabetes affecting TcPO2 levels (Table 1, Suppl. Fig. 2).
+The results from the Bayesian hierarchical generalized linear model corroborate these findings (Fig. 1B, Table 1, Suppl. Fig. 2, Suppl. Table 1). The model highlights a significant effect of wound location, demonstrating that limb wounds exhibit a 2.6-fold higher TcPO2 value compared to flap wounds on day 28. Specifically, for non-diabetic and diabetic subgroups, the final TcPO2 values were approximately 2.4-fold and 2.8-fold greater in limb wounds, respectively (Table 1). The model estimates a 98.6% probability that limb location results in enhanced TcPO2 levels by day 28. The model found no reliable evidence of diabetes affecting TcPO2 levels (Table 1, Suppl. Fig. 2).
 
-In conclusion, limb wounds seems linked to higher TcPO2 levels a month after wound formation,
-indicating better healing process for limb wounds.
+In conclusion, limb wounds seems linked to higher TcPO2 levels a month after wound formation, indicating better healing process for limb wounds.
 
 ### Figure 1
 
@@ -3558,28 +3408,13 @@ suppl_table_01
 
 ## Wound area
 
-Wound area declined over time (D0 to D14 post-wound formation) in all groups. Control (unoccluded)
-wounds showed results comparable to the experimental wounds (Fig. 2A). Diabetic wounds exhibited
-surprisingly steeper declining trends, indicating higher healing velocity (Fig. 2A).
+Wound area declined over time (D0 to D14 post-wound formation) in all groups. Control (unoccluded) wounds showed results comparable to the experimental wounds (Fig. 2A). Diabetic wounds exhibited surprisingly steeper declining trends, indicating higher healing velocity (Fig. 2A).
 
-The Bayesian model supports this observation (Fig. 2B, Table 2, Suppl. Fig. 3). Healing velocity ---
-defined as the weekly rate of wound area reduction --- showed a notable difference between groups.
-The rate of change per week was -74 mm^2^ in non-diabetic pigs and -158 mm^2^ in diabetic pigs,
-leading to a difference of 84 mm^2^ per week in healing velocity rate between the diabetic and
-non-diabetic pigs (95% CI: 23 to 144; Suppl. Table 2). Within the subgroups, diabetic pigs exhibited
-a greater healing velocity by 69 mm^2^ per week in flap wounds (CI: 1 to 138) and 99 mm^2^ per week
-in limb wounds (-3 to 199) compared to their non-diabetic counterparts (Table 2, Suppl. Fig. 3).
-Remarkably, the model suggests a 99.7% probability that diabetes enhances healing velocity, i.e.
-fasten wound closure over time.
+The Bayesian model supports this observation (Fig. 2B, Table 2, Suppl. Fig. 3). Healing velocity --- defined as the weekly rate of wound area reduction --- showed a notable difference between groups. The rate of change per week was -74 mm^2^ in non-diabetic pigs and -158 mm^2^ in diabetic pigs, leading to a difference of 84 mm^2^ per week in healing velocity rate between the diabetic and non-diabetic pigs (95% CI: 23 to 144; Suppl. Table 2). Within the subgroups, diabetic pigs exhibited a greater healing velocity by 69 mm^2^ per week in flap wounds (CI: 1 to 138) and 99 mm^2^ per week in limb wounds (-3 to 199) compared to their non-diabetic counterparts (Table 2, Suppl. Fig. 3). Remarkably, the model suggests a 99.7% probability that diabetes enhances healing velocity, i.e. fasten wound closure over time.
 
-For limb wounds, the initially larger wound area in diabetic pigs complicates the interpretation of
-results (Fig. 2C, Table 2). However, flap wounds started with similar sizes across both groups, yet
-data suggest diabetes still promotes quicker healing in diabetic flap wounds, with a 97.6%
-model-estimated probability of faster wound closure (Table 2).
+For limb wounds, the initially larger wound area in diabetic pigs complicates the interpretation of results (Fig. 2C, Table 2). However, flap wounds started with similar sizes across both groups, yet data suggest diabetes still promotes quicker healing in diabetic flap wounds, with a 97.6% model-estimated probability of faster wound closure (Table 2).
 
-Although these results seem relatively robust, sensitivity analysis advises caution (Suppl. Tables 3
-and 4). A complex model incorporating a random slope yielded a smaller model-based probability of
-93.2% for diabetes facilitating faster healing (Suppl. Table 3), suggesting uncertainty.
+Although these results seem relatively robust, sensitivity analysis advises caution (Suppl. Tables 3 and 4). A complex model incorporating a random slope yielded a smaller model-based probability of 93.2% for diabetes facilitating faster healing (Suppl. Table 3), suggesting uncertainty.
 
 #### Figure 2
 
@@ -3624,12 +3459,7 @@ suppl_table_04
 
 ## Vessel index
 
-Data suggest different trends in the vessel index over time, with an increasing trend for wounds on
-limbs of non-diabetic pigs and a decline in flaps. However, this may be influenced by differing
-initial values (Fig. 3). Given that the data are not longitudinal (measured once per wound) and
-initial values vary significantly across groups (Fig. 3), interpreting the results is challenging.
-Congruently, the Bayesian model shows a large uncertainty in estimates and does not indicate any
-reliable difference between groups (Table 3, Suppl. Table 5).
+Data suggest different trends in the vessel index over time, with an increasing trend for wounds on limbs of non-diabetic pigs and a decline in flaps. However, this may be influenced by differing initial values (Fig. 3). Given that the data are not longitudinal (measured once per wound) and initial values vary significantly across groups (Fig. 3), interpreting the results is challenging. Congruently, the Bayesian model shows a large uncertainty in estimates and does not indicate any reliable difference between groups (Table 3, Suppl. Table 5).
 
 ### Figure 3
 
@@ -3653,18 +3483,11 @@ suppl_table_05
 
 ### Conclusion
 
-TcPO2 appears to be restored faster in limb wounds compared to flaps, while, surprisingly, healing
-velocity is better in diabetic animals, potentially due to insulin treatment and the short duration
-of diabetes. Analysis of the vessel index does not provide robust evidence for the effect of
-diabetes or wound location.
+TcPO2 appears to be restored faster in limb wounds compared to flaps, while, surprisingly, healing velocity is better in diabetic animals, potentially due to insulin treatment and the short duration of diabetes. Analysis of the vessel index does not provide robust evidence for the effect of diabetes or wound location.
 
-Generally, flap wounds in non-diabetic animals exhibited the worst endpoint values across the three
-outcomes, suggesting this group may serve as the most suitable model for chronic diabetic wounds.
-Inducing of diabetes does not appear to reinforce chronicity of the wound in our pig models.
+Generally, flap wounds in non-diabetic animals exhibited the worst endpoint values across the three outcomes, suggesting this group may serve as the most suitable model for chronic diabetic wounds. Inducing of diabetes does not appear to reinforce chronicity of the wound in our pig models.
 
-Given the small sample size, caution in interpretation is warranted. However, our publicly available
-data invite future Bayesian updating and meta-analysis, contributing to a deeper understanding of
-wound healing mechanisms and potential interventions.
+Given the small sample size, caution in interpretation is warranted. However, our publicly available data invite future Bayesian updating and meta-analysis, contributing to a deeper understanding of wound healing mechanisms and potential interventions.
 
 # Software versions
 
