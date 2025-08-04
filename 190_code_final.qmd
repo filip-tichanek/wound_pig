@@ -82,7 +82,7 @@ Filip Tichanek (f.tichanek@gmail.com)
 
 ------------------------------------------------------------------------
 
-This is statistical report of the study [Novel in vivo porcine models of chronic ischemic tissue](https://doi.org/10.1016/j.mvr.2025.10484) that has been published the *Microvascular Research* [@frelichova2025].
+This is statistical report of the study [Novel in vivo porcine models of chronic ischemic tissue](https://doi.org/10.1016/j.mvr.2025.104845) that has been published the *Microvascular Research* [@frelichova2025].
 
 [When using this code, cite original publication:]{style="font-size: larger;"}
 
