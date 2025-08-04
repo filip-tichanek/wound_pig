@@ -1,6 +1,6 @@
 
 
-This is statistical report of the study [Novel in vivo porcine models of chronic ischemic tissue](https://doi.org/10.1016/j.mvr.2025.10484) that has been published the *Microvascular Research*
+This is statistical report of the study [Novel in vivo porcine models of chronic ischemic tissue](https://doi.org/10.1016/j.mvr.2025.104845) that has been published the *Microvascular Research*
 
 **When using this code, cite original publication**:
 
